@@ -4,9 +4,9 @@ C# Cross Platform app for getting data from KSTAR Inverter
 ##Currently this Repository has these function##
 
  - Core inverter UDP communication read only
- - Parsing
- - Cross platfomr SQlite implementation based on Xamarin.SQLite (Windows,*nix and Mac)
- - Console application executable runnable in Windows and on Mono (Communicated with Inverter, udpates console and saves to database)
+ - Parsing bytes/hex to C# Object Models
+ - Cross platform SQlite implementation based on Xamarin.SQLite (Windows,*nix and Mac)
+ - Console application executable runnable in Windows and on Mono (Communicate with Inverter, udpates console and saves to database)
  - MVC 4 Dashboard. Runnable on IIS or XSP or anything you configure to run ASP.NET MVC
  
 ##Todo:##
