@@ -18,6 +18,7 @@ C# Cross Platform app for getting data from KSTAR Inverter
 ##Disclaimer##
 
 The protocol has been reverse engineered and the goal of this code is for read only use only. 
+I cannot guarantee it will work with all models and I cannot guarantee stability
 For your safety this repository will never implement setting/writting anything back to the inverter.
 Please use the official kstar app for any maintanence required on your inverter.
 
@@ -44,3 +45,8 @@ Will reuse the C# library in Xamarin Android project
 
 ###iOS###
 Will reuse the C# library in Xamarin iOS project but there seems to be initial problems with this. Firstly I don't have a mac and secondly Xamarin decided to not install the iOS SDK... Looking bleak as usual with iOS.
+
+
+##Tested Inverters##
+
+Hybrid KSE4000 with WiFi, EZMeter and 10kW Battery array - Stable
