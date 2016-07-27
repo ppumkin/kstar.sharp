@@ -24,7 +24,10 @@ Please use the official kstar app for any maintanence required on your inverter.
 
 ##Tested Platforms##
 
+###Windows###
 Obviosly all this works great on Windows.
+
+###*nix###
 
 To push the boundries I have the following lab setup for *nix
  - FreeNAS 10 with ZFS
@@ -35,3 +38,9 @@ To push the boundries I have the following lab setup for *nix
  - nginx proxying port 80 to XSP
 
 Currently this FreeNAS implemention has been running for days, logging data to sqlite file every 30 seconds. MVC reads from the same sqlite file and the basic dashboard works well. Thanks to the advantages of ZFS on FreeNAS it actually runs faster on my low end "nas" box than my beefy dev machine. +1 for ZFS!
+
+###Android###
+Will reuse the C# library in Xamarin Android project
+
+###iOS###
+Will reuse the C# library in Xamarin iOS project but there seems to be initial problems with this. Firstly I don't have a mac and secondly Xamarin decided to not install the iOS SDK... Looking bleak as usual with iOS.
