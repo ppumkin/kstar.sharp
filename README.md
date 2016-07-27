@@ -51,6 +51,8 @@ Will reuse the C# library in Xamarin iOS project but there seems to be initial p
 
 Hybrid KSE4000 with WiFi, EZMeter and 10kW Battery array - Stable
 
+Need help adding other kstar inverters.
+I hope I can add other manufacturers too maybe - we'll see what happens
 
 ##Screens##
 
