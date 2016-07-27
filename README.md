@@ -14,3 +14,9 @@ C# Cross Platform app for getting data from KSTAR Inverter
  - Windows UWP App
  - iOs App
  - Android App
+ 
+##Disclaimer##
+
+The protocol has been reverse engineered and the goal of this code is for read only use only. 
+For your safety this repository will never implement setting/writting anything back to the inverter.
+Please use the official kstar app for any maintanence required on your inverter.
