@@ -33,7 +33,7 @@ namespace kstar.sharp.Services
 
 
         }
-
+         
 
 
         public List<kstar.sharp.domain.Entities.InverterDataGranular> Get(DateTimeOffset start, DateTimeOffset end)
