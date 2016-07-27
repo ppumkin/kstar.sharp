@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp", "kstar.sharp\kstar.sharp.csproj", "{2FEA91C9-52BA-41F9-AA9D-CA0AA19B6AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.console", "kstar.console\kstar.console.csproj", "{765DC0D8-369F-47B5-9FBB-12255AFDAE2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.sqlite", "kstar.sharp.sqlite\kstar.sharp.sqlite.csproj", "{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kastar.sharp.mvc4", "kastar.sharp.mvc4\kastar.sharp.mvc4.csproj", "{1A6825FE-851C-4218-9CD2-A58B9F6190DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.domain", "kstar.sharp.domain\kstar.sharp.domain.csproj", "{79DDCEE3-A8BB-42FD-9E44-CE5BC3160C48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.datacollect", "kstar.sharp.datacollect\kstar.sharp.datacollect.csproj", "{DB4486C4-53DB-429E-B1A9-44BE9720616A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FEA91C9-52BA-41F9-AA9D-CA0AA19B6AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEA91C9-52BA-41F9-AA9D-CA0AA19B6AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEA91C9-52BA-41F9-AA9D-CA0AA19B6AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEA91C9-52BA-41F9-AA9D-CA0AA19B6AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765DC0D8-369F-47B5-9FBB-12255AFDAE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765DC0D8-369F-47B5-9FBB-12255AFDAE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765DC0D8-369F-47B5-9FBB-12255AFDAE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765DC0D8-369F-47B5-9FBB-12255AFDAE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6825FE-851C-4218-9CD2-A58B9F6190DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6825FE-851C-4218-9CD2-A58B9F6190DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6825FE-851C-4218-9CD2-A58B9F6190DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6825FE-851C-4218-9CD2-A58B9F6190DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79DDCEE3-A8BB-42FD-9E44-CE5BC3160C48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DDCEE3-A8BB-42FD-9E44-CE5BC3160C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DDCEE3-A8BB-42FD-9E44-CE5BC3160C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DDCEE3-A8BB-42FD-9E44-CE5BC3160C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB4486C4-53DB-429E-B1A9-44BE9720616A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4486C4-53DB-429E-B1A9-44BE9720616A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4486C4-53DB-429E-B1A9-44BE9720616A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4486C4-53DB-429E-B1A9-44BE9720616A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
