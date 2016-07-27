@@ -54,7 +54,7 @@ Hybrid KSE4000 with WiFi, EZMeter and 10kW Battery array - Stable
 
 ##Screens##
 
-##Console##
+###Console###
 
 ![kstar.sharp.console](http://i.imgur.com/k97oYF6.png "kstar.sharp.console in Jail")
 
