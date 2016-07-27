@@ -50,3 +50,18 @@ Will reuse the C# library in Xamarin iOS project but there seems to be initial p
 ##Tested Inverters##
 
 Hybrid KSE4000 with WiFi, EZMeter and 10kW Battery array - Stable
+
+
+##Screens##
+
+##Console##
+
+![kstar.sharp.console](http://i.imgur.com/k97oYF6.png "kstar.sharp.console in Jail")
+
+###MVC4 Dashboard###
+
+![kstar.sharp.mvc4](http://i.imgur.com/s0fUrq1.png "kstar.sharp.mvc4 in Jail")
+
+
+
+
