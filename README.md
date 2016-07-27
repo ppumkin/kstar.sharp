@@ -12,7 +12,7 @@ C# Cross Platform app for getting data from KSTAR Inverter
 ##Todo:##
  
  - Windows UWP App (Native)
- - iOS App (Xamarin - But I dont have a mac so possibly Cordova?)
+ - iOS App (Xamarin - But I dont have a mac so possibly Cordova but i think its too limited?)
  - Android App (Xamarin)
  
 ##Disclaimer##
