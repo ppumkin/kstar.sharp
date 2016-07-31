@@ -40,6 +40,12 @@ To push the boundries I have the following lab setup for *nix
 
 Currently this FreeNAS implemention has been running for days, logging data to sqlite file every 30 seconds. MVC reads from the same sqlite file and the basic dashboard works well. Thanks to the advantages of ZFS on FreeNAS it actually runs faster on my low end "nas" box than my beefy dev machine. +1 for ZFS!
 
+XSP Command line
+
+Set nginx_enable to YES in /etc/rc.conf  or use 'onestart'
+fastcgi-mono-server4 /applications=/:/mnt/storage/mvc4/ /socket=tcp:127.0.0.1:9000
+
+
 ###Android###
 Will reuse the C# library in Xamarin Android project
 
