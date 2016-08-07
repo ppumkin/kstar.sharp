@@ -43,6 +43,7 @@ Currently this FreeNAS implemention has been running for days, logging data to s
 XSP Command line
 
 Set nginx_enable to YES in /etc/rc.conf  or use 'onestart'
+
 fastcgi-mono-server4 /applications=/:/mnt/storage/mvc4/ /socket=tcp:127.0.0.1:9000
 
 
