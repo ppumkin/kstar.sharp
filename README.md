@@ -7,6 +7,7 @@
  - At no point was the main contributor under any NDA agreement.
  - Reusuing some parts of this source code in any capacity may violate copy right law
  - Redistribution of this software in source or binary forms shall be free of all charges or fees to the recipient of this software.
+ - All 3rd party licenses must be adhered too.
 
 # kstar.sharp
 C# Cross Platform app for getting data from KSTAR Inverter
