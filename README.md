@@ -1,13 +1,4 @@
-# License
- - This source code has been made available for educational uses only but is NOT licensed as any version of "Educational Community License"
- - Reverse engineering of some protocols were accomplished by monitoring unencrypted data within a sandboxed, private network. No attempts of hacking, brute force or use of non-public or leaked code was used.
- - Source Code is released under the "fair use" policy, to allow for interobility on various other platforms, but only in a limited form. 
- - The limitation is read only data collection to allow to create monitoring software for personal use
- - No further attempt to fully reverse engineer the protocol will be made. eg, to allow sending data back to hardware.
- - At no point was the main contributor under any NDA agreement.
- - Reusuing some parts of this source code in any capacity may violate copy right law
- - Redistribution of this software in source or binary forms shall be free of all charges or fees to the recipient of this software.
- - All 3rd party licenses must be adhered too.
+
 
 # kstar.sharp
 C# Cross Platform app for getting data from KSTAR Inverter
@@ -82,6 +73,25 @@ I hope I can add other manufacturers too maybe - we'll see what happens
 
 ![kstar.sharp.mvc4](http://i.imgur.com/s0fUrq1.png "kstar.sharp.mvc4 in Jail")
 
+All data over some time
 
+
+![kstar.sharp.mvc4](http://i.imgur.com/HOYTo1D.png "kstar.sharp.mvc4 in Jail")
+
+Cross section of that data
+
+![kstar.sharp.mvc4](http://i.imgur.com/uGHr8yF.png "kstar.sharp.mvc4 in Jail")
+
+
+# License
+ - This source code has been made available for educational uses only but is NOT licensed as any version of "Educational Community License"
+ - Reverse engineering of some protocols were accomplished by monitoring unencrypted data within a sandboxed, private network. No attempts of hacking, brute force or use of non-public or leaked code was used.
+ - Source Code is released under the "fair use" policy, to allow for interobility on various other platforms, but only in a limited form. 
+ - The limitation is read only data collection to allow to create monitoring software for personal use
+ - No further attempt to fully reverse engineer the protocol will be made. eg, to allow sending data back to hardware.
+ - At no point was the main contributor under any NDA agreement.
+ - Reusuing some parts of this source code in any capacity may violate copy right law
+ - Redistribution of this software in source or binary forms shall be free of all charges or fees to the recipient of this software.
+ - All 3rd party licenses must be adhered too.
 
 
