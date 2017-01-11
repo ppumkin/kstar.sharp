@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/Inverter/InverterDyGraphjs.js"></script>
+<script src="~/Scripts/Inverter/InverterLatestData.js"></script>
+
+
+<h2>Live</h2>
+<p id="liveData"></p>
+
+
+<h2>Detailed Graph</h2>
+<select id="historyHours">
+    <option value="-24">Last 24 Hours</option>
+    <option value="-48">Last 48 Hours</option>
+    <option value="-168">Last week</option>
+    <option value="-672">Last month</option>
+    <option value="0">All (may be slow to laod)</option>
+</select>
+<div id="graph" style="width:100%; height: 700px">Loading graph ...</div>
+
+<h2>Settings</h2>
+<p>DB: @ViewBag.DBPath</p>
