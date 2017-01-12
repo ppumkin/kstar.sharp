@@ -3,6 +3,12 @@
 # kstar.sharp
 C# Cross Platform app for getting data from KSTAR Inverter
 
+- .NET 4.5
+- ASP.MVC 5
+- Xamarin for cross device apps
+- Unity Game Engine ... Just for fun.
+
+
 ##Currently this Repository has these function##
 
  - Core inverter UDP communication read only
