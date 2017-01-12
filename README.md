@@ -61,7 +61,7 @@ I was looking at Unity a few times while writting a plugin for Rimworld (http://
 I started looking at the 2D capabilities and for some strange reason my first idea was to create an animation of the sun based on the time of day. Then added a solar panel, home, batter and grid. Wow.. OK I got the basics in writting scripts, attaching functions, even some basic AI.
 I then added some webrequests to my MVC site that get the current state of the Inverter and udpated labels these icons. I even went to OpenWeather and display the temperature, sunrise and sunset times.
 
-![kstar.sharp.console](http://imgur.com/HSH7Hdv "kstar.sharp.unity running on my £30 Windows 10 Tablet")
+![kstar.sharp.unity](http://i.imgur.com/HSH7Hdv.png "kstar.sharp.unity running on my £30 Windows 10 Tablet")
 
 ##Tested Inverters##
 
