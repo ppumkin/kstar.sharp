@@ -66,7 +66,9 @@ Will reuse the C# library in Xamarin iOS project but there seems to be initial p
 I was looking at Unity a few times while writting a plugin for Rimworld (http://steamcommunity.com/sharedfiles/filedetails/?id=760900903) One day I was bored and decided to download Unity and see how it works. (Unity 5.2)
 
 - I started looking at the 2D capabilities and for some strange reason my first idea was to create an animation of the sun based on the time of day. Then added a solar panel, a home, battery and pwoergrid. Wow.. OK I got the basics in writting scripts, attaching functions and even some basic AI.
-- I then added some webrequests to my MVC site that get the current state of the Inverter and udpated labels these icons. I even went to OpenWeather and display the temperature, sunrise and sunset times.
+- I then added WebRequests to call the kstar.sharp.MVC5 site running on FreeNAS and that gets the current state of the Inverter.
+- I added OpenWeatherMap API and display the temperature, sunrise and sunset times from there.
+- I tweaked my tablet to not lock or sleep after some time. I started this "dashboard" on it and it has been happilly running for over 72 hours.
 
 ![kstar.sharp.unity](http://i.imgur.com/HSH7Hdv.png "kstar.sharp.unity running on my £30 Windows 10 Tablet")
 
