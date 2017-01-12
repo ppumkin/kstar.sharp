@@ -6,7 +6,7 @@ C# Cross Platform app for getting data from KSTAR Inverter
 - .NET 4.5
 - ASP.MVC 5
 - Xamarin for cross device apps
-- Unity Game Engine ... Started as "Just for fun" but allows me to deploy to deploy to PS4, XBox, Linux, PSVita, WiiU, Nintento 3DS, Oculus Rift, Stgeam VR, Hololens, Android TV, Samsung Smart TV, tvOS, Fire OS and last but not least Facebook Gameroom.
+- Unity Game Engine ... Started as "Just for fun" but now I realised I can deploy to PS4, XBox, Linux, PSVita, WiiU, Nintento 3DS, Oculus Rift, Stgeam VR, Hololens, Android TV, Samsung Smart TV, tvOS, Fire OS and last but not least Facebook Gameroom.
 
 
 ##Currently this Repository has these function##
