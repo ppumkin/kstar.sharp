@@ -55,6 +55,13 @@ Will reuse the C# library in Xamarin Android project
 ###iOS###
 Will reuse the C# library in Xamarin iOS project but there seems to be initial problems with this. Firstly I don't have a mac and secondly Xamarin decided to not install the iOS SDK... Looking bleak as usual with iOS.
 
+###Unity - Game Engine###
+
+I was looking at Unity a few times while writting a plugin for Rimworld (http://steamcommunity.com/sharedfiles/filedetails/?id=760900903) One day I was bored and decided to download Unity and see how it works. (Unity 5.2)
+I started looking at the 2D capabilities and for some strange reason my first idea was to create an animation of the sun based on the time of day. Then added a solar panel, home, batter and grid. Wow.. OK I got the basics in writting scripts, attaching functions, even some basic AI.
+I then added some webrequests to my MVC site that get the current state of the Inverter and udpated labels these icons. I even went to OpenWeather and display the temperature, sunrise and sunset times.
+
+![kstar.sharp.console](http://imgur.com/HSH7Hdv "kstar.sharp.unity running on my £30 Windows 10 Tablet")
 
 ##Tested Inverters##
 
