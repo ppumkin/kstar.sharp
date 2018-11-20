@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerTargetOS>Windows</DockerTargetOS>
+    <UserSecretsId>9bd219b9-f1d3-405b-a29f-db1a79902476</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\kstar.sharp\kstar.sharp.csproj" />
+    <ProjectReference Include="..\kstart.sharp.ef\kstar.sharp.ef.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Home\Graph.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>
