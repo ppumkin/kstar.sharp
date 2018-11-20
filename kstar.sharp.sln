@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.datacollect", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.aspnetcore", "kstar.sharp.aspnetcore\kstar.sharp.aspnetcore.csproj", "{6E74F3CE-B119-4703-AA2C-6F5120EAE541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.ef", "kstart.sharp.ef\kstar.sharp.ef.csproj", "{292556AE-620F-4E6B-8E78-3377B9492382}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.ef", "kstar.sharp.ef\kstar.sharp.ef.csproj", "{292556AE-620F-4E6B-8E78-3377B9492382}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp", "kstar.sharp\kstar.sharp.csproj", "{5837004B-FDB2-4E39-AE6B-33C362606207}"
 EndProject

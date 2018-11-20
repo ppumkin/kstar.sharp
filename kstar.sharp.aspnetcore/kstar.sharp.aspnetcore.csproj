@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\kstar.sharp\kstar.sharp.csproj" />
-    <ProjectReference Include="..\kstart.sharp.ef\kstar.sharp.ef.csproj" />
+    <ProjectReference Include="..\kstar.sharp.ef\kstar.sharp.ef.csproj" />
   </ItemGroup>
 
   <ItemGroup>
