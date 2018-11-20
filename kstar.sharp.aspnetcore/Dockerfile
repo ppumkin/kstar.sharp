@@ -10,12 +10,8 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 FROM microsoft/dotnet:2.1-sdk AS builder
 ARG Configuration=Release
 WORKDIR /src
-#COPY *.sln ./
 COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore/
-COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
-COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
-COPY sqlite/inverter-data.db sqlite/inverter-data.db 
 COPY . .
 
 FROM builder AS publish
@@ -26,7 +22,6 @@ RUN dotnet publish -c $Configuration -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-COPY --from=publish /src/sqlite/inverter-data.db /sqlite/inverter-data.db
 ENTRYPOINT ["dotnet", "kstar.sharp.aspnetcore.dll"]
 
 
