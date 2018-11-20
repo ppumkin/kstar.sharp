@@ -30,7 +30,11 @@ COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "kstar.sharp.aspnetcore.dll"]
 
 
-# sudo docker run  -it -p 5001:80 <img>
+# Change {host path} to where your sqlite file is 
+# sudo docker run --volume={host path}:/sqlite -it -p 5001:80 kstar.sharp/aspnetcore 
+
+# getting bash while container running
+# docker exec -it <container name> /bin/bash
 
 ## debugging build step issues
 # sudo docker container run -it --name=debug <buid step id> /bin/sh
