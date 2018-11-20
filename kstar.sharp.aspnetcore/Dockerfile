@@ -11,7 +11,7 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 FROM microsoft/dotnet:2.1-sdk AS builder
 ARG Configuration=Release
 WORKDIR /src
-COPY kstar.sharp.api/kstar.sharp.api.csproj kstar.sharp.api/
+COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore/
 COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
 COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
