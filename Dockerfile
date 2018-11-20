@@ -9,7 +9,7 @@ WORKDIR /app
 
 ARG Configuration=Release
 WORKDIR /src
-#COPY *.sln ./
+COPY *.sln ./
 COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore/
 COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/

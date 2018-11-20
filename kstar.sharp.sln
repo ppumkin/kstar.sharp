@@ -19,8 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.domain", "kstar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D113B78E-BA13-4921-9A3E-2C7EB9E388FB}"
 	ProjectSection(SolutionItems) = preProject
-		build\build-docker-aspnetcore.sh = build\build-docker-aspnetcore.sh
-		build\Dockerfile = build\Dockerfile
+		build-docker-aspnetcore.sh = build-docker-aspnetcore.sh
+		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Global
