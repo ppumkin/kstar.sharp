@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using kstar.sharp.domain.Extensions;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-
-using kstar.sharp.domain.Extensions;
 
 namespace kstar.sharp.datacollect
 {
@@ -19,13 +15,12 @@ namespace kstar.sharp.datacollect
 
         public event DataRecievedEventHandler DataRecieved;
 
-        int PORT_UDP_BROADCAST = 48899;
-        UdpClient receiver_Broadcast;
-        IPEndPoint inverterIpEndPoint_Broadcast;
-
-        int PORT_UDP_DATA = 8899;
-        UdpClient receiver_Data;
-        IPEndPoint inverterIpEndPoint_Data;
+        private int PORT_UDP_BROADCAST = 48899;
+        private UdpClient receiver_Broadcast;
+        private IPEndPoint inverterIpEndPoint_Broadcast;
+        private int PORT_UDP_DATA = 8899;
+        private UdpClient receiver_Data;
+        private IPEndPoint inverterIpEndPoint_Data;
 
         public bool BroadcastRequest_ResponseRecieved { get; set; }
 
@@ -35,8 +30,7 @@ namespace kstar.sharp.datacollect
         // Invoke the Changed event; called whenever list changes
         protected virtual void OnDataRecieved(kstar.sharp.domain.Models.InverterData obj)
         {
-            if (DataRecieved != null)
-                DataRecieved(obj);
+            DataRecieved?.Invoke(obj);
         }
 
         /// <summary>
@@ -45,7 +39,7 @@ namespace kstar.sharp.datacollect
         /// <param name="IPAddress">If you require auto detect using broadcast or cannot recieve broadcasts pass in empty string or "0.0.0.0" - Broadcast needs to be sent any way but wont be parsed on reply</param>
         public Client(string IPAddress)
         {
-            if (!String.IsNullOrWhiteSpace(IPAddress) || !IPAddress.Equals("0.0.0.0"))
+            if (!string.IsNullOrWhiteSpace(IPAddress) || !IPAddress.Equals("0.0.0.0"))
             {
                 IP_ADDRESS_INVERTER = IPAddress;
             }
@@ -91,7 +85,7 @@ namespace kstar.sharp.datacollect
             string command = "WIFIKIT-214028-READ";
             receiver_Broadcast.Send(Encoding.ASCII.GetBytes(command), command.Length, inverterIpEndPoint_Broadcast);
 
-            if (!String.IsNullOrWhiteSpace(IP_ADDRESS_INVERTER) && !IP_ADDRESS_INVERTER.Equals("0.0.0.0"))
+            if (!string.IsNullOrWhiteSpace(IP_ADDRESS_INVERTER) && !IP_ADDRESS_INVERTER.Equals("0.0.0.0"))
             {
                 BroadcastRequest_ResponseRecieved = true;
                 receiver_Broadcast.Close(); //Wont need this any more
@@ -109,7 +103,7 @@ namespace kstar.sharp.datacollect
             {
                 UdpClient c = (UdpClient)ar.AsyncState;
                 IPEndPoint receivedIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
-                Byte[] receivedBytes = c.EndReceive(ar, ref receivedIpEndPoint);
+                byte[] receivedBytes = c.EndReceive(ar, ref receivedIpEndPoint);
 
                 string hex = BitConverter.ToString(receivedBytes);
 
@@ -159,7 +153,7 @@ namespace kstar.sharp.datacollect
 
         public void parseBroadcastData(string[] hexArray)
         {
-            string asciiData = String.Join("", hexArray).HexToASCII();
+            string asciiData = string.Join("", hexArray).HexToASCII();
             string _ip = asciiData.Split(',')[0];
             string _serial = asciiData.Split(',')[1];
             string _wifiAccess = asciiData.Split(',')[2];
