@@ -6,9 +6,22 @@
 FROM microsoft/dotnet:2.1-sdk AS build-env
 WORKDIR /app
 
-# copy csproj and restore as distinct layers
-COPY *.csproj ./
+
+ARG Configuration=Release
+WORKDIR /src
+#COPY *.sln ./
+COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore/
+COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
+COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
+COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
 RUN dotnet restore
+COPY . .
+WORKDIR /src/kstar.sharp.aspnetcore
+RUN dotnet build -c $Configuration -o /app
+
+# copy csproj and restore as distinct layers
+#COPY *.csproj ./
+#RUN dotnet restore
 
 # copy everything else and build
 COPY . ./
