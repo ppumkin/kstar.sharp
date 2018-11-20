@@ -2,55 +2,28 @@
 #For more information, please see https://aka.ms/containercompat
 
 
-
-FROM microsoft/dotnet:2.1-sdk AS build-env
+FROM microsoft/dotnet:2.1-aspnetcore-runtime as base
 WORKDIR /app
+ENV ASPNETCORE_ENVIRONMENT=Production
 
 
+FROM microsoft/dotnet:2.1-sdk AS builder
 ARG Configuration=Release
 WORKDIR /src
-COPY *.sln ./
+#COPY *.sln ./
 COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore/
 COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
 COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
-RUN dotnet restore
 COPY . .
 WORKDIR /src/kstar.sharp.aspnetcore
 RUN dotnet build -c $Configuration -o /app
 
-# copy csproj and restore as distinct layers
-#COPY *.csproj ./
-#RUN dotnet restore
+FROM builder AS publish
+ARG Configuration=Release
+RUN dotnet publish -c $Configuration -o /app
 
-# copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
-
-# build runtime image
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "kstar.sharp.aspnetcore.dll"]
-
-
-#FROM microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-1803 AS base
-#WORKDIR /app
-#EXPOSE 62536
-#EXPOSE 44311
-#
-#FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build
-#WORKDIR /src
-#COPY ["kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj", "kstar.sharp.aspnetcore/"]
-#RUN dotnet restore "kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj"
-#COPY . .
-#WORKDIR "/src/kstar.sharp.aspnetcore"
-#RUN dotnet build "kstar.sharp.aspnetcore.csproj" -c Release -o /app
-#
-#FROM build AS publish
-#RUN dotnet publish "kstar.sharp.aspnetcore.csproj" -c Release -o /app
-#
-#FROM base AS final
-#WORKDIR /app
-#COPY --from=publish /app .
-#ENTRYPOINT ["dotnet", "kstar.sharp.aspnetcore.dll"]
