@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  api:
+    build: './kstar.sharp.api'
+  aspnetcore:
+    build: './kstar.sharp.aspnetcore'

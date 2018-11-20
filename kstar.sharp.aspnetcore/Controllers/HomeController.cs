@@ -1,6 +1,5 @@
 ﻿using kstar.sharp.aspnetcore.Models;
 using kstar.sharp.domain.Entities;
-using kstar.sharp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,21 +9,12 @@ namespace kstar.sharp.aspnetcore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DbService _dbService;
-
-        public HomeController(DbService dbService)
-        {
-            _dbService = dbService;
-        }
 
         public ActionResult Index()
         {
-            DateTimeOffset start = DateTimeOffset.Now.AddDays(-1).Date + new TimeSpan(0, 0, 0);
-            DateTimeOffset end = DateTimeOffset.Now.AddDays(-1).Date + new TimeSpan(23, 59, 59);
 
-            var results = _dbService.Get(start, end);
 
-            ViewBag.Results = results.Count;
+            ViewBag.Results = "fix me";
 
             return View();
         }
@@ -51,7 +41,7 @@ namespace kstar.sharp.aspnetcore.Controllers
 
             DateTimeOffset end = DateTimeOffset.Now;
 
-            List<InverterDataGranular> vm = _dbService.Get(start, end);
+            List<InverterDataGranular> vm = new List<InverterDataGranular>(); // _dbService.Get(start, end);
 
             //Have to use this in MVC now to work around large JSON data
             return new ContentResult()
@@ -64,7 +54,7 @@ namespace kstar.sharp.aspnetcore.Controllers
 
         public JsonResult GetLatest()
         {
-            InverterDataGranular vm = _dbService.GetLatest();
+            InverterDataGranular vm = new InverterDataGranular(); // _dbService.GetLatest();
             return Json(vm);
         }
 
