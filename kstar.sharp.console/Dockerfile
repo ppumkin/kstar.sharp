@@ -15,11 +15,12 @@ COPY kstar.sharp.console/kstar.sharp.console.csproj kstar.sharp.console/
 COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
 COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
+COPY kstar.sharp.datacollect/kstar.sharp.datacollect.csproj kstar.sharp.datacollect/
 #COPY sqlite/inverter-data.db sqlite/inverter-data.db 
 COPY . .
 
 FROM builder AS publish
-WORKDIR /src/kstar.sharp.aspnetcore
+WORKDIR /src/kstar.sharp.console
 ARG Configuration=Release
 RUN dotnet publish -c $Configuration -o /app
 
