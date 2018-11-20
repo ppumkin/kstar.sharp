@@ -32,7 +32,7 @@ ENTRYPOINT ["dotnet", "kstar.sharp.console.dll"]
 
 
 # Change {host path} to where your sqlite file is 
-# sudo docker run --volume={host path}:/sqlite -it kstar.sharp/console 
+# sudo docker run --volume={host path}:/sqlite -it kstar.sharp/console -- --ip-192.168.1.50 --sqlite-"Data Source=/sqlite/inverter-data.db"
 
 # getting bash while container running
 # docker exec -it <container name> /bin/bash

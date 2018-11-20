@@ -59,7 +59,8 @@ namespace kstar.sharp.console
             Console.WriteLine("Starting UDP Data");// on port: " + receiverPort);
             Console.WriteLine("-------------------------------\n");
             client.DataRecieved += new kstar.sharp.datacollect.DataRecievedEventHandler(DataRecievedUpdateConsole);
-            while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape))
+            //while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) //does not work in docker!
+            while (true)  // ctrl+c or sigterm kills this
             {
                 client.SendDataRequest();
 

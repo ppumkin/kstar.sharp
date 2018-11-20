@@ -15,13 +15,21 @@ spec:
         app: kstar-sharp-aspnetcore
     spec:
       containers:
-        - name: kstar-sharp-aspnetcore
-          image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:246"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+      - name: kstar-sharp-aspnetcore
+        image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:246"
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        volumeMounts:
+        - mountPath: /sqlite
+          name: sqlite-db-volume
+      volumes:
+      - name: sqlite-db-volume
+        hostPath:
+          path: /home/k8admin/sqlite
+          type: Directory
       imagePullSecrets:
         - name: regsecret
 ---
@@ -42,13 +50,18 @@ spec:
         app: kstar-sharp-console
     spec:
       containers:
-        - name: kstar-sharp-console
-          image: "piotrkula.azurecr.io/kstar.sharp.console:247"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+      - name: kstar-sharp-console
+        image: "piotrkula.azurecr.io/kstar.sharp.console:248"
+        args: ["--ip-192.168.1.50", "--sqlite-Data Source=/sqlite/inverter-data.db"]
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /sqlite
+          name: sqlite-db-volume
+      volumes:
+      - name: sqlite-db-volume
+        hostPath:
+          path: /home/k8admin/sqlite
+          type: Directory
       imagePullSecrets:
         - name: regsecret
 ---
