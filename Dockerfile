@@ -15,6 +15,7 @@ COPY kstar.sharp.aspnetcore/kstar.sharp.aspnetcore.csproj kstar.sharp.aspnetcore
 COPY kstar.sharp/kstar.sharp.csproj kstar.sharp/
 COPY kstar.sharp.domain/kstar.sharp.domain.csproj kstar.sharp.domain/
 COPY kstar.sharp.ef/kstar.sharp.ef.csproj kstar.sharp.ef/
+COPY sqlite/inverter-data.db sqlite/inverter-data.db 
 COPY . .
 WORKDIR /src/kstar.sharp.aspnetcore
 RUN dotnet build -c $Configuration -o /app

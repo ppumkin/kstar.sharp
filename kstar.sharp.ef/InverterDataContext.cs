@@ -5,30 +5,20 @@ namespace kstar.sharp.ef
 {
     public class InverterDataContext : DbContext
     {
+        public InverterDataContext(DbContextOptions<InverterDataContext> options)
+            : base(options)
+        { }
+
         public DbSet<InverterDataGranular> InverterDataGranular { get; set; }
 
-        private string connectionString = @"Data Source=c:\databases\inverter-data.db";
-
-        public InverterDataContext()
-        {
-
-        }
 
 
-        public InverterDataContext(DbContextOptions<InverterDataContext> options)
-        {
-            var opt = options.FindExtension<Microsoft.EntityFrameworkCore.Sqlite.Infrastructure.Internal.SqliteOptionsExtension>();
+        //private string connectionString = @"Data Source=inverter-data.db";
 
-            if (opt != null)
-            {
-                connectionString = opt.ConnectionString;
-            }
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(connectionString);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite(connectionString);
+        //}
     }
 
 

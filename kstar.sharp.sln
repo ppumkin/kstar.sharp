@@ -9,18 +9,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.sqlite", "kstar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.datacollect", "kstar.sharp.datacollect\kstar.sharp.datacollect.csproj", "{DB4486C4-53DB-429E-B1A9-44BE9720616A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.aspnetcore", "kstar.sharp.aspnetcore\kstar.sharp.aspnetcore.csproj", "{6E74F3CE-B119-4703-AA2C-6F5120EAE541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.aspnetcore", "kstar.sharp.aspnetcore\kstar.sharp.aspnetcore.csproj", "{6E74F3CE-B119-4703-AA2C-6F5120EAE541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.ef", "kstar.sharp.ef\kstar.sharp.ef.csproj", "{292556AE-620F-4E6B-8E78-3377B9492382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.ef", "kstar.sharp.ef\kstar.sharp.ef.csproj", "{292556AE-620F-4E6B-8E78-3377B9492382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp", "kstar.sharp\kstar.sharp.csproj", "{5837004B-FDB2-4E39-AE6B-33C362606207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp", "kstar.sharp\kstar.sharp.csproj", "{5837004B-FDB2-4E39-AE6B-33C362606207}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.domain", "kstar.sharp.domain\kstar.sharp.domain.csproj", "{C042673C-5265-41F1-BEB3-3029CFAE6782}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.domain", "kstar.sharp.domain\kstar.sharp.domain.csproj", "{C042673C-5265-41F1-BEB3-3029CFAE6782}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D113B78E-BA13-4921-9A3E-2C7EB9E388FB}"
 	ProjectSection(SolutionItems) = preProject
 		build-docker-aspnetcore.sh = build-docker-aspnetcore.sh
 		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{2902D1B7-37A3-4266-9B55-714403ED1C4E}"
+	ProjectSection(SolutionItems) = preProject
+		sqlite\inverter-data.db = sqlite\inverter-data.db
 	EndProjectSection
 EndProject
 Global
