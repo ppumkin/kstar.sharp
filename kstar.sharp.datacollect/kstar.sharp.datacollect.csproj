@@ -42,12 +42,6 @@
     <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\kstar.sharp.domain\kstar.sharp.domain.csproj">
-      <Project>{79ddcee3-a8bb-42fd-9e44-ce5bc3160c48}</Project>
-      <Name>kstar.sharp.domain</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

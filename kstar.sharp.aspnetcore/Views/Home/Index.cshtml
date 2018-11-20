@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<div style="width: 100%">
+    <canvas id="myChart"></canvas>
+</div>
+@*DB: @ViewBag.DBPath*@
+DB: @ViewBag.Results
+
+<script>
+
+
+    $(document).ready(function () {
+        var ctx = document.getElementById("myChart").getContext('2d');
+
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart - Stacked'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        });
+
+    });
+
+    var barChartData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: '#78ff99',
+            data: [
+                10, 20, 30
+            ]
+
+        }, {
+            label: 'Dataset 2',
+            backgroundColor: '#54aa43',
+            data: [
+                40, 60, 80
+            ]
+            //}, {
+            //    label: 'Dataset 3',
+            //    backgroundColor: window.chartColors.green,
+            //    data: [
+            //        randomScalingFactor(),
+            //        randomScalingFactor(),
+            //        randomScalingFactor(),
+            //        randomScalingFactor(),
+            //        randomScalingFactor(),
+            //        randomScalingFactor(),
+            //        randomScalingFactor()
+            //    ]
+        }]
+
+    };
+
+
+</script>

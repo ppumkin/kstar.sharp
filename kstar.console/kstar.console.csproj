@@ -79,14 +79,6 @@
       <Project>{db4486c4-53db-429e-b1a9-44be9720616a}</Project>
       <Name>kstar.sharp.datacollect</Name>
     </ProjectReference>
-    <ProjectReference Include="..\kstar.sharp.domain\kstar.sharp.domain.csproj">
-      <Project>{79ddcee3-a8bb-42fd-9e44-ce5bc3160c48}</Project>
-      <Name>kstar.sharp.domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\kstar.sharp\kstar.sharp.csproj">
-      <Project>{2fea91c9-52ba-41f9-aa9d-ca0aa19b6ab4}</Project>
-      <Name>kstar.sharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace kstar.sharp.domain.Entities
 {
     public class InverterDataGranular
     {
+        public long Id { get; set; } //Primary Key usage for EF.SQLite
+
         public DateTime RecordedDateTime { get; set; } //when Adding to table SQLite timestamp will be used when getting this will be populated
 
         /// <summary>

@@ -224,3 +224,4 @@ sysinfo.txt
 *.unitypackage
 
 #/kstar.sharp.unity/Library/ShaderCache/1
+/.vs/kstar.sharp/v15/Server/sqlite3
