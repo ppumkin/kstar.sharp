@@ -28,11 +28,11 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 #COPY --from=publish /src/sqlite/inverter-data.db /sqlite/inverter-data.db
-ENTRYPOINT ["dotnet", "kstar.sharp.aspnetcore.dll"]
+ENTRYPOINT ["dotnet", "kstar.sharp.console.dll"]
 
 
 # Change {host path} to where your sqlite file is 
-# sudo docker run --volume={host path}:/sqlite -it -p 5001:80 kstar.sharp/aspnetcore 
+# sudo docker run --volume={host path}:/sqlite -it kstar.sharp/console 
 
 # getting bash while container running
 # docker exec -it <container name> /bin/bash
