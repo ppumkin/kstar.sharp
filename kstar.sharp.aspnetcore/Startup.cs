@@ -24,7 +24,7 @@ namespace kstar.sharp.aspnetcore
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<InverterDataContext>(options =>
-                 options.UseSqlite(@"Data Source=c:\sqlite\inverter-data.db"));
+                 options.UseSqlite(@"Data Source=../sqlite/inverter-data.db"));
 
 
             services.AddTransient<DbService>();
