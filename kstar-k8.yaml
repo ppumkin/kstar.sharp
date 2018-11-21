@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kstar-sharp-aspnetcore
-        image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:latest"
+        image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:37a56617f01630964c63f5be91e11d61f608dbbd"
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: kstar-sharp-console
-        image: "piotrkula.azurecr.io/kstar.sharp.console:latest"
+        image: "piotrkula.azurecr.io/kstar.sharp.console:37a56617f01630964c63f5be91e11d61f608dbbd"
         args: ["--ip-192.168.1.50", "--sqlite-Data Source=/sqlite/inverter-data.db"]
         imagePullPolicy: IfNotPresent
         volumeMounts:
