@@ -57,7 +57,7 @@
 
     $(document).on("onGetLatest", function (event, data) {
         gauge_power_pv.value = data.pvPower;
-        gauge_power_load.value = data.gridPower;
+        gauge_power_load.value = data.loadPower;
         gauge_e_today.value = data.eToday;
 
         gauge_battery_power.value = data.bat1Charge;
