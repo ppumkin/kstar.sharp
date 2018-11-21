@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kstar-sharp-aspnetcore
-        image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:37a56617f01630964c63f5be91e11d61f608dbbd"
+        image: "piotrkula.azurecr.io/kstar.sharp.aspnetcore:d2b80cd2955f95332cd63c4b6b05b57f5ec6c7cb"
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
@@ -28,7 +28,7 @@ spec:
       volumes:
       - name: sqlite-db-volume
         hostPath:
-          path: /home/k8admin/sqlite
+          path: /home/sqlite
           type: Directory
       imagePullSecrets:
         - name: regsecret
@@ -60,7 +60,7 @@ spec:
       volumes:
       - name: sqlite-db-volume
         hostPath:
-          path: /home/k8admin/sqlite
+          path: /home/sqlite
           type: Directory
       imagePullSecrets:
         - name: regsecret

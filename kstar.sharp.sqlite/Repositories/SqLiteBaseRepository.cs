@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Dapper;
 using Mono.Data.Sqlite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
+using System;
 using System.IO;
 
 namespace kstar.sharp.sqlite.Repositories
@@ -17,7 +13,7 @@ namespace kstar.sharp.sqlite.Repositories
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(_dbFile))
+                if (string.IsNullOrWhiteSpace(_dbFile))
                     return Environment.CurrentDirectory + "/SimpleDb.sqlite";
                 else
                     return _dbFile;
@@ -55,6 +51,7 @@ namespace kstar.sharp.sqlite.Repositories
             cnn.Execute(
                 @"
 CREATE TABLE `InverterDataGranular` (
+    `Id`                INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`RecordedDateTime`	TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`TempCelcius`	    INTEGER,
 	`ETotal`	        INTEGER,
@@ -68,7 +65,7 @@ CREATE TABLE `InverterDataGranular` (
 	`Bat1Voltage`	    REAL,
 	`Bat1Amp`	        REAL,
 	`GridPower`	        REAL,
-	PRIMARY KEY(RecordedDateTime)
+	PRIMARY KEY(Id)
 );
 ");
 
