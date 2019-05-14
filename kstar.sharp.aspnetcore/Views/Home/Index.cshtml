@@ -6,29 +6,48 @@
 <script src="~/js/gauge.min.js"></script>
 
 
+<a href="~/home/graph">📈</a>
 
 <div class="row">
     <div class="col-sm-4">
         <canvas id="gauge-power-pv"></canvas>
+        <div style="text-align: center;">
+            E-Today <span style="color:white;" id="e-today"></span> kW
+        </div>
+        <div style="text-align: center;">
+            <span style="color:white;" id="pv1-volt"></span>V / <span style="color:white;" id="pv2-volt"></span>V
+        </div>
+        <div style="text-align: center;">
+            <span style="color:white;" id="tempCelcius"></span> &#176;C
+        </div>
     </div>
     <div class="col-sm-4">
         <canvas id="gauge-power-load"></canvas>
     </div>
     <div class="col-sm-4">
-        <canvas id="gauge-e-today"></canvas>
+        <canvas id="gauge-power-grid"></canvas>
+        @*<canvas id="gauge-e-today">
+                        pV1Volt: 151
+            pV2Volt: 148
+                        </canvas>*@
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <canvas id="gauge-battery-power"></canvas>
+
+        <div style="text-align: center;">
+            Array Voltage <span style="color:white;" id="bat1-voltage"></span> V
+        </div>
+        <div style="text-align: center;">
+            Cell Voltage <span style="color:white;" id="bat1-cell-voltage"></span> V
+        </div>
     </div>
-    <div class="col-sm-3">
-        <canvas id="gauge-power-grid"></canvas>
-    </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
+
     </div>
 </div>
 
@@ -52,18 +71,30 @@
     var gauge_colour_dark = '#212121';
     var gauge_colour_mid = '#99a4af';
     var gauge_colour_light = '#f8f9fa';
-
+    var gauge_colour_white = '#fff';
 
 
     $(document).on("onGetLatest", function (event, data) {
         gauge_power_pv.value = data.pvPower;
+        gauge_power_pv.options.valueText = data.pvPower.toString();
+        $('#e-today').text(data.eToday);
+        $('#pv1-volt').text(data.pV1Volt);
+        $('#pv2-volt').text(data.pV2Volt);
+        $('#tempCelcius').text(data.tempCelcius);
+
         gauge_power_load.value = data.loadPower;
-        gauge_e_today.value = data.eToday;
+        gauge_power_load.options.valueText = data.loadPower.toString();
+
+        //gauge_e_today.value = data.eToday;
 
         gauge_battery_power.value = data.bat1Charge;
-        gauge_battery_power.options.valueText = data.bat1Power.toString();
+        gauge_battery_power.options.valueText = data.bat1Charge.toString();
+        $("#bat1-voltage").text(data.bat1Voltage);
+        $("#bat1-cell-voltage").text(data.bat1Voltage / 4);
 
         gauge_power_grid.value = data.gridPower;
+        gauge_power_grid.options.valueText = data.gridPower.toString();
+
     });
 
 
@@ -72,6 +103,8 @@
         renderTo: 'gauge-power-pv',
         height: 400,
         units: 'W',
+        valueText: '',
+        valueBoxWidth: 35,
         value: 0,
         minValue: 200,
         maxValue: 3000,
@@ -83,7 +116,6 @@
             { from: 200, to: 1000, color: 'rgba(40, 167,  69, 0.2)' },
             { from: 1001, to: 2000, color: 'rgba(40, 167,  69, 0.4)' },
             { from: 2001, to: 3000, color: 'rgba(40, 167,  69, 0.6)' },
-
         ],
         animatedValue: true,
         borders: false,
@@ -103,6 +135,8 @@
         renderTo: 'gauge-power-load',
         height: 400,
         units: 'W',
+        valueText: '',
+        valueBoxWidth: 35,
         value: 0,
         minValue: 0,
         maxValue: 1500,
@@ -126,34 +160,34 @@
         colorValueTextShadow: false
     }).draw();
 
-    var gauge_e_today = new RadialGauge({
-        title: 'E Today',
-        renderTo: 'gauge-e-today',
-        height: 400,
-        units: 'kW',
-        value: 0,
-        minValue: 0,
-        maxValue: 14,
-        exactTicks: true,
-        majorTicks: [0, 3, 7, 12, 14],
-        minorTicks: 0,
-        valueBox: true,
-        highlights: [
-            { from: 0, to: 3, color: 'rgba(220,  53, 69, 0.25)' },
-            { from: 3, to: 12, color: 'rgba(40, 167,  69, 0.25)' },
-            { from: 12, to: 14, color: 'rgba(40, 167,  69, 0.5)' }
+    //var gauge_e_today = new RadialGauge({
+    //    title: 'E Today',
+    //    renderTo: 'gauge-e-today',
+    //    height: 400,
+    //    units: 'kW',
+    //    value: 0,
+    //    minValue: 0,
+    //    maxValue: 14,
+    //    exactTicks: true,
+    //    majorTicks: [0, 3, 7, 12, 14],
+    //    minorTicks: 0,
+    //    valueBox: true,
+    //    highlights: [
+    //        { from: 0, to: 3, color: 'rgba(220,  53, 69, 0.25)' },
+    //        { from: 3, to: 12, color: 'rgba(40, 167,  69, 0.25)' },
+    //        { from: 12, to: 14, color: 'rgba(40, 167,  69, 0.5)' }
 
-        ],
-        animatedValue: true,
-        borders: false,
-        colorPlate: gauge_colour_dark,
-        colorMajorTicks: gauge_colour_mid,
-        colorTitle: gauge_colour_light,
-        colorUnits: gauge_colour_mid,
-        colorNumbers: gauge_colour_mid,
-        valueBoxStroke: 0,
-        colorValueTextShadow: false
-    }).draw();
+    //    ],
+    //    animatedValue: true,
+    //    borders: false,
+    //    colorPlate: gauge_colour_dark,
+    //    colorMajorTicks: gauge_colour_mid,
+    //    colorTitle: gauge_colour_light,
+    //    colorUnits: gauge_colour_mid,
+    //    colorNumbers: gauge_colour_mid,
+    //    valueBoxStroke: 0,
+    //    colorValueTextShadow: false
+    //}).draw();
 
 
     var gauge_battery_power = new RadialGauge({
@@ -162,7 +196,7 @@
         height: 300,
         units: '%',
         valueText: '',
-        valueBoxWidth: 50,
+        valueBoxWidth: 35,
         value: 0,
         minValue: 0,
         maxValue: 100,
@@ -189,8 +223,10 @@
     var gauge_power_grid = new RadialGauge({
         title: 'Grid',
         renderTo: 'gauge-power-grid',
-        height: 300,
+        height: 400,
         units: 'W',
+        valueText: '',
+        valueBoxWidth: 35,
         value: 0,
         minValue: -1500,
         maxValue: 1500,
@@ -209,8 +245,8 @@
         colorUnits: gauge_colour_mid,
         colorNumbers: gauge_colour_mid,
         valueBoxStroke: 0,
-        colorValueTextShadow: false
-        //colorValueText: gauge_colour_light,
+        colorValueTextShadow: false,
+        //colorValueText: gauge_colour_white,
 
     }).draw();
 
