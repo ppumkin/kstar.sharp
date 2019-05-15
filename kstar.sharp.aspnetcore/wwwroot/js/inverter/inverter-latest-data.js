@@ -8,7 +8,8 @@ $(document).ready(function () {
 
 function getLatest() {
     $.ajax({
-        url: "/Home/GetLatest",
+        url: "/api/data",
+        method: "GET",
         context: document.body
     }).done(function (data) {
 

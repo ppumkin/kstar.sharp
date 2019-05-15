@@ -18,7 +18,8 @@ function updateGraph() {
 
 
     $.ajax({
-        url: "/Home/GetData",
+        url: '/api/data',
+        method: "GET",
         data: { historyHours: getHoursForHistory() },
         context: document.body
     }).done(function (data) {
