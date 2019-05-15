@@ -38,7 +38,7 @@
     $(document).on("onGetLatest", function (event, data) {
 
         //debugger;
-        var textDataTime = new Date(parseInt(data.recordedDateTime.substr(6))).toString();
+        var textDataTime = new Date(data.recordedDateTime).toString();
         var textData = `PV: ${data.pvPower}KW Battery: ${data.bat1Charge}% ${data.bat1Power}W Grid: ${data.gridPower}W Load: ${data.loadPower}W EToday: ${data.eToday}KWh`;
         $('#liveDataTime').text(textDataTime);
         $('#liveData').text(textData);
