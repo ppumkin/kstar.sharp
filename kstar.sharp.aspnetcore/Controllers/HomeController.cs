@@ -36,7 +36,7 @@ namespace kstar.sharp.aspnetcore.Controllers
 
 
 
-        public ContentResult GetData(int? historyHours)
+        public JsonResult GetData(int? historyHours)
         {
             DateTimeOffset start;
 
@@ -53,12 +53,13 @@ namespace kstar.sharp.aspnetcore.Controllers
 
             List<InverterDataGranular> vm = _dbService.Get(start, end);
 
-            //Have to use this in MVC now to work around large JSON data
-            return new ContentResult()
-            {
-                Content = Newtonsoft.Json.JsonConvert.SerializeObject(vm),
-                ContentType = "application/json",
-            };
+            return Json(vm);
+            ////Have to use this in MVC now to work around large JSON data
+            //return new ContentResult()
+            //{
+            //    Content = Newtonsoft.Json.JsonConvert.SerializeObject(vm),
+            //    ContentType = "application/json",
+            //};
 
         }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace kstar.sharp.domain.Extensions
+﻿namespace kstar.sharp.domain.Extensions
 {
     public static class InverterDataExtensions
     {
@@ -32,6 +26,8 @@ namespace kstar.sharp.domain.Extensions
                 PV1Volt = inverterModelData.PVData.PV1Volt,
                 PV2Volt = inverterModelData.PVData.PV2Volt,
                 PVPower = inverterModelData.PVData.PVPower,
+
+                RecordedDateTime = inverterModelData.RecordDateTime
             };
 
             return entity;

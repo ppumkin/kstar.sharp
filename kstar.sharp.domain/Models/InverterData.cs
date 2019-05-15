@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace kstar.sharp.domain.Models
 {
@@ -26,7 +22,7 @@ namespace kstar.sharp.domain.Models
             PVData = new PhotoVoltaicData(HEXData);
             StatData = new StatisticsData(HEXData);
 
-            //RecordDateTime = DateTime.Now; //Not used to save. DB logic will use database timestamp and returen actuall saved time in database
+            RecordDateTime = DateTime.Now; //Not used to save. DB logic will use database timestamp and returen actuall saved time in database
         }
 
 
@@ -39,13 +35,13 @@ namespace kstar.sharp.domain.Models
         //        Battery1Amp = dbData.Bat1Amp,
         //        Battery1Volt = dbData.Bat1Voltage
         //    };
-           
+
 
 
         //}
 
 
-      
+
 
     }
 }
