@@ -18,23 +18,14 @@ namespace kstar.sharp.aspnetcore.Controllers
             this.dbService = dbService;
         }
 
-        [HttpGet]
+        [HttpGet, Route("{historyHours:int?}")]
         public async Task<IActionResult> GetData(int? historyHours)
         {
             if (historyHours.HasValue)
             {
-                DateTimeOffset start;
+                DateTime start = DateTime.Now.AddHours(historyHours.Value);
 
-                if (!historyHours.HasValue)
-                    historyHours = -24;
-
-                if (historyHours == 0)
-                    start = DateTimeOffset.MinValue;
-                else
-                    start = DateTimeOffset.Now.AddHours(historyHours.Value);
-
-
-                DateTimeOffset end = DateTimeOffset.Now;
+                DateTime end = DateTime.Now;
 
                 List<InverterDataGranular> vm = await dbService.Get(start, end);
 

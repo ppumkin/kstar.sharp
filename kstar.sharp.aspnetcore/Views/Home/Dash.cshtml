@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/js/drivers/dash-gchart-etoday-driver.js"></script>
+
+<script src="~/js/inverter/inverter-latest-data.js"></script>
+
+<a href="~/">🏠</a>
+<style>
+    html {
+        background-color: #242f3a;
+    }
+
+    body {
+        background-color: #242f3a;
+    }
+</style>
+
+<div class="row">
+
+    <div class="col-sm-6" style="text-align:center;">
+        <div id="donutchart-etoday"></div>
+
+        <div style="position:relative; top: -50%; font-family: LatoLight; ">
+            <div style="font-size: 1.8em">
+                Energy Today
+            </div>
+            <div style="font-size: 3.8em">
+                <span id="etoday"></span>
+            </div>
+            <div style="font-size: 1.4em">
+                kWh
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-sm-6" style="text-align:center;">
+        <div id="donutchart-pvnow"></div>
+
+        <div style="position:relative; top: -50%; font-family: LatoLight; ">
+            <div style="font-size: 1.8em">
+                Solar
+            </div>
+            <div>
+                <span style="font-size: 3.8em" id="pvnow"></span> <span style="font-size: 1.4em">kW</span>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+@*//background #242f3a
+    //dial light #43576b
+
+*@
+
+
+
+<script>
+
+    $(document).on("onGetLatest", function (event, data) {
+
+        ////debugger;
+        //var textDataTime = new Date(data.recordedDateTime).toString();
+        //var textData = `PV: ${data.pvPower}KW Battery: ${data.bat1Charge}% ${data.bat1Power}W Grid: ${data.gridPower}W Load: ${data.loadPower}W EToday: ${data.eToday}KWh`;
+        //$('#liveDataTime').text(textDataTime);
+        //$('#liveData').text(textData);
+
+    });
+</script>

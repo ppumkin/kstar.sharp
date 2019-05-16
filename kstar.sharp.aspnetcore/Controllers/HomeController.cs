@@ -17,11 +17,10 @@ namespace kstar.sharp.aspnetcore.Controllers
             return View();
         }
 
-
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        public ActionResult Dash()
+        {
+            return View();
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

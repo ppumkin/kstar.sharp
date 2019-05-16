@@ -17,9 +17,11 @@ namespace kstar.sharp.Services
             db = inverterDataContext;
         }
 
-        public async Task<List<domain.Entities.InverterDataGranular>> Get(DateTimeOffset start, DateTimeOffset end)
+        public async Task<List<domain.Entities.InverterDataGranular>> Get(DateTime start, DateTime end)
         {
-            var results = await db.InverterDataGranular.Take(10).ToListAsync();
+            var results = await db.InverterDataGranular
+                .Where(d => d.RecordedDateTime > start && d.RecordedDateTime <= end)
+                .ToListAsync();
 
             return results;
         }

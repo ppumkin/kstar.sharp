@@ -27,7 +27,7 @@ function updateGraph() {
 
         dyArray = new Array();
         $.map(data, function (val, i) {
-            dyArray.push([new Date(val.recordedDateTime), val.pvPower, val.bat1Charge * 10, val.bat1Power, val.gridPower, val.loadPower, val.eToday]);
+            dyArray.push([new Date(val.recordedDateTime), val.pvPower, val.bat1Charge * 10, val.bat1Power, val.gridPower, val.loadPower, val.eToday * 100]);
         });
 
         dyGraph = new Dygraph(document.getElementById("graph"), dyArray,
@@ -41,6 +41,8 @@ function updateGraph() {
                 labelsDivWidth: 800,
                 showRangeSelector: true,
                 valueRange: [-3500, 3500],
+                drawGrid: false,
+              
 
                 //highlightSeriesOpts: {
                 //    strokeWidth: 2,
@@ -58,8 +60,8 @@ function updateGraph() {
                     color: '#b3b300'
                 },
                 'EDay': {
-                    color: '#b3b300',
-                    strokeWidth: 2
+                    color: 'silver',
+                    strokeWidth: 0.2
                 },
                 'Load': {
                     color: '#ff5050'
@@ -67,6 +69,9 @@ function updateGraph() {
                 'Grid': {
                     color: '#cc0000'
                 }
+                //'Bat%': {
+                //    strokePattern : [1,0,1,0,1,0]
+                //}
                 //axisLabelWidth : [50,60]
             }
 
