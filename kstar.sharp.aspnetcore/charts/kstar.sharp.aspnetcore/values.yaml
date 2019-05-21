@@ -1,0 +1,48 @@
+# Default values for kstarsharpaspnetcore.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+fullnameOverride: kstarsharpaspnetcore
+replicaCount: 1
+image:
+  repository: piotrkula.azurecr.io/ppumkin/kstar.sharp
+  tag: $(build.buidlid)
+  pullPolicy: IfNotPresent
+imagePullSecrets: 
+  - name: regsecret
+  # Optionally specify an array of imagePullSecrets.
+  # Secrets must be manually created in the namespace.
+  # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+  #
+  # This uses credentials from secret "myRegistryKeySecretName".
+  # - name: myRegistryKeySecretName
+service:
+  type: NodePort
+  port: 80
+
+probes:
+  enabled: true
+
+ingress:
+  enabled: true
+  annotations:
+     kubernetes.io/ingress.class: nginx
+     kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+  - solar.kula.solutions
+  - www.solar.kula.solutions
+  tls: 
+    - secretName: piotrkulamvc-app-tls
+      hosts:
+        - solar.kula.solutions
+        - www.solar.kula.solutions
+
+secrets: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -17,7 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D113B78E
 	ProjectSection(SolutionItems) = preProject
 		build-docker.sh = build-docker.sh
 		kstar-k8.yaml = kstar-k8.yaml
-		kstar.aspnetcore-k8.yaml = kstar.aspnetcore-k8.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{2902D1B7-37A3-4266-9B55-714403ED1C4E}"
