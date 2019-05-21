@@ -1,10 +1,10 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "piotrkulamvc.fullname" . }}
+  name: {{ template "kstarsharpaspnetcore.fullname" . }}
   labels:
-    app: {{ template "piotrkulamvc.name" . }}
-    chart: {{ template "piotrkulamvc.chart" . }}
+    app: {{ template "kstarsharpaspnetcore.name" . }}
+    chart: {{ template "kstarsharpaspnetcore.chart" . }}
     draft: {{ default "draft-app" .Values.draft }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,12 +12,12 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "piotrkulamvc.name" . }}
+      app: {{ template "kstarsharpaspnetcore.name" . }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "piotrkulamvc.name" . }}
+        app: {{ template "kstarsharpaspnetcore.name" . }}
         draft: {{ default "draft-app" .Values.draft }}
         release: {{ .Release.Name }}
       annotations:
@@ -48,7 +48,7 @@ spec:
             - name: {{ $ref }}_{{ $key }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "piotrkulamvc.fullname" $root }}-{{ $ref | lower }}
+                  name: {{ template "kstarsharpaspnetcore.fullname" $root }}-{{ $ref | lower }}
                   key: {{ $key }}
             {{- end }}
             {{- end }}
