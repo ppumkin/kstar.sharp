@@ -20,8 +20,6 @@ spec:
         app: {{ template "kstarsharpaspnetcore.name" . }}
         draft: {{ default "draft-app" .Values.draft }}
         release: {{ .Release.Name }}
-      annotations:
-        buildID: {{ .Values.buildID }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
