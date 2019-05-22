@@ -26,16 +26,9 @@ ingress:
   enabled: true
   annotations:
      kubernetes.io/ingress.class: nginx
-     kubernetes.io/tls-acme: "false"
   path: /
   hosts:
   - solar.kula.solutions
-  - www.solar.kula.solutions
-  tls: 
-    - secretName: piotrkulamvc-app-tls
-      hosts:
-        - solar.kula.solutions
-        - www.solar.kula.solutions
 
 secrets: {}
 
