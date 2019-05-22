@@ -4,7 +4,7 @@
 fullnameOverride: kstarsharpaspnetcore
 replicaCount: 1
 image:
-  repository: piotrkula.azurecr.io/ppumkin/kstar.sharp
+  repository: piotrkula.azurecr.io/kstar.sharp.aspnetcore
   tag: $(build.buidlid)
   pullPolicy: IfNotPresent
 imagePullSecrets: 
