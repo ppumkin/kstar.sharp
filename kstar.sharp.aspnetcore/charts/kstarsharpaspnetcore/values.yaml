@@ -4,7 +4,7 @@
 fullnameOverride: kstarsharpaspnetcore
 replicaCount: 1
 image:
-  repository: piotrkula.azurecr.io/ppumkin/kstar.sharp
+  repository: piotrkula.azurecr.io/kstar.sharp.aspnetcore
   tag: $(build.buidlid)
   pullPolicy: IfNotPresent
 imagePullSecrets: 
@@ -26,16 +26,9 @@ ingress:
   enabled: true
   annotations:
      kubernetes.io/ingress.class: nginx
-     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
   - solar.kula.solutions
-  - www.solar.kula.solutions
-  tls: 
-    - secretName: piotrkulamvc-app-tls
-      hosts:
-        - solar.kula.solutions
-        - www.solar.kula.solutions
 
 secrets: {}
 
