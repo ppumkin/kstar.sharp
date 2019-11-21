@@ -8,7 +8,12 @@
   },
   "devDependencies": {
     "@types/node": "12.12.11",
-    "typed-rest-client": "1.5.0",
-    "rxjs": "6.5.3"
+    "typescript": "3.7.2",
+    "tslint": "5.20.1",
+    "gulp-tslint": "8.1.4",
+    "gulp-typescript": "5.0.1",
+    "gulp": "^4.0.2",
+    "rxjs": "6.5.3",
+    "typed-rest-client": "1.5.0"
   }
 }

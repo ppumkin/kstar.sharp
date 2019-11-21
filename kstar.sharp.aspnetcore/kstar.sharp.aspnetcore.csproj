@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="gulpfile.js" />
     <None Remove="TypeScript\DashDriver.ts" />
     <None Remove="TypeScript\Definitions\InverterDataGranular.d.ts" />
+    <None Remove="TypeScript\Driver\dash.driver.ts" />
     <None Remove="TypeScript\inversify.config.ts" />
     <None Remove="TypeScript\inverter-repository.ts" />
-    <None Remove="TypeScript\types.ts" />
+    <None Remove="TypeScript\Views\dash.view.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="gulpfile.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Home\Dash - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\Dash.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -46,13 +55,16 @@
     <TypeScriptCompile Update="TypeScript\Definitions\InverterDataGranular.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Update="TypeScript\Driver\dash.driver.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Update="TypeScript\inversify.config.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="TypeScript\Services\inverter-data-service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Update="TypeScript\types.ts">
+    <TypeScriptCompile Update="TypeScript\Views\dash.view.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

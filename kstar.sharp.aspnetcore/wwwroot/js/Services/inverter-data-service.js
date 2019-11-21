@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,13 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var rxjs_1 = require("rxjs");
-var rm = require("typed-rest-client/RestClient");
-var inversify_1 = require("inversify");
+import { Subject } from 'rxjs';
+import * as rm from 'typed-rest-client/RestClient';
+import { injectable } from 'inversify';
 var InverterDataService = /** @class */ (function () {
     function InverterDataService() {
-        this.LatestDataObservable = new rxjs_1.Subject();
+        this.LatestDataObservable = new Subject();
         //var g = Observable.fromEvent()
     }
     //https://x-team.com/blog/rxjs-observables/
@@ -38,10 +36,10 @@ var InverterDataService = /** @class */ (function () {
         //return this.http.get(apiURL)
     };
     InverterDataService = __decorate([
-        inversify_1.injectable(),
+        injectable(),
         __metadata("design:paramtypes", [])
     ], InverterDataService);
     return InverterDataService;
 }());
-exports.InverterDataService = InverterDataService;
+export { InverterDataService };
 //# sourceMappingURL=inverter-data-service.js.map
