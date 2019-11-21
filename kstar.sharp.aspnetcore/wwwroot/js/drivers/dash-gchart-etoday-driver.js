@@ -1,11 +1,15 @@
 ﻿
-google.charts.load("current", { packages: ["corechart"] });
+google.charts.load("current", { packages: ["corechart","bar"] });
 google.charts.setOnLoadCallback(setData);
 
-var dash_etoday_data; 
-var dash_pvnow_data; 
+let dash_etoday_data; 
+let dash_pvnow_data; 
+let dash_gridnow_data; 
 
-var inverterData;
+let dash_pvtoday_data; 
+
+
+let inverterData;
 
 $(document).on("onGetLatest", function (event, data) {
 
@@ -41,7 +45,36 @@ function setData() {
 
     ]);
     $('#pvnow').text(inverterData.pvPower);
-    drawChartPvnow();
+    drawChartPvNow();
+
+    dash_gridnow_data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Today', inverterData.gridPower],
+        ['Average', 1500 - inverterData.gridPower]
+
+    ]);
+    $('#gridnow').text(inverterData.gridPower);
+    drawGridNow();
+
+
+    dash_pvtoday_data = google.visualization.arrayToDataTable([
+        ['Hour', 'kWh'],
+        ['6:00',   0.1],
+        ['7:00',   0.3],
+        ['8:00',   0.45],
+        ['9:00',   0.5],
+        ['10:00',  0.55],
+        ['11:00',  0.6],
+        ['12:00',  0.65],
+        ['13:00',  0.55],
+        ['14:00',  0.45],
+        ['15:00',  0.32],
+        ['16:00',  0.2],
+        ['17:00',  0.18],
+        ['18:00',  0.2]
+    ]);
+    drawPvToday();
+
 }
 
 
@@ -55,8 +88,8 @@ function drawChartEtoday() {
 
     var options = {
         //title: 'My Daily Activities',
-        height: 450,
-        pieHole: 0.92,
+        height: 300,
+        pieHole: 0.9,
         pieSliceBorderColor: 'none',
         legend: { position: 'none' },
         pieSliceText: 'none',
@@ -66,11 +99,11 @@ function drawChartEtoday() {
         //enableInteractivity: false
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('donutchart-etoday'));
+    let chart = new google.visualization.PieChart(document.getElementById('donutchart-etoday'));
     chart.draw(dash_etoday_data, options);
 }
 
-function drawChartPvnow() {
+function drawChartPvNow() {
     //var data = google.visualization.arrayToDataTable([
     //    ['Task', 'Hours per Day'],
     //    ['PV', 1100],
@@ -80,8 +113,8 @@ function drawChartPvnow() {
 
     var options = {
         //title: 'My Daily Activities',
-        height: 450,
-        pieHole: 0.92,
+        height: 300,
+        pieHole: 0.9,
         pieSliceBorderColor: 'none',
         legend: { position: 'none' },
         pieSliceText: 'none',
@@ -91,10 +124,81 @@ function drawChartPvnow() {
         //enableInteractivity: false
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('donutchart-pvnow'));
+    let chart = new google.visualization.PieChart(document.getElementById('donutchart-pvnow'));
     chart.draw(dash_pvnow_data, options);
 }
 
+function drawGridNow() {
+    //var data = google.visualization.arrayToDataTable([
+    //    ['Task', 'Hours per Day'],
+    //    ['PV', 1100],
+    //    ['Eat', 3500],
+
+    //]);
+
+    var options = {
+        //title: 'My Daily Activities',
+        height: 300,
+        pieHole: 0.9,
+        pieSliceBorderColor: 'none',
+        legend: { position: 'none' },
+        pieSliceText: 'none',
+        backgroundColor: '#242f3a',
+        pieStartAngle: 180,
+        slices: [{ color: '#f15a2c' }, { color: '#43576b' }]
+        //enableInteractivity: false
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('donutchart-gridnow'));
+    chart.draw(dash_gridnow_data, options);
+}
+
+function drawPvToday() {
+    //var data = google.visualization.arrayToDataTable([
+    //    ['Task', 'Hours per Day'],
+    //    ['PV', 1100],
+    //    ['Eat', 3500],
+
+    //]);
+
+    var options = {
+        title: '',
+        backgroundColor: '#242f3a',
+        colors: ['#f15a2c'],
+        legend: { position: "none" },
+        //fontName: 'LatoLight',
+        hAxis: {
+            title: '', //PV Today',
+            format: 'h:mm a',
+            titleTextStyle: {
+                color: '#fff',
+                italic: false
+            },
+            gridlines: {
+                color: '#242f3a',
+                count: 2
+            }
+            //viewWindow: {
+            //    min: [7, 30, 0],
+            //    max: [17, 30, 0]
+            //}
+        },
+        vAxis: {
+            title: 'kWh',
+            titleTextStyle: {
+                color: '#fff',
+                italic: false
+            },
+            gridlines: {
+                color: '#242f3a',
+                count: 2
+            }
+        }
+    };
+
+    let chart = new google.visualization.ColumnChart(document.getElementById('columnchart-pvtoday'));
+    chart.draw(dash_pvtoday_data, options);
+}
 
 
 $(window).resize(function () {
