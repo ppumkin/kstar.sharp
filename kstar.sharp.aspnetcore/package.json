@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "name": "SolarGUI",
+  "private": true,
+  "dependencies": {
+    "inversify": "5.0.1",
+    "reflect-metadata": "0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "12.12.11",
+    "typed-rest-client": "1.5.0",
+    "rxjs": "6.5.3"
+  }
+}

@@ -15,6 +15,7 @@
       "library": "Chart.js@2.7.3",
       "destination": "wwwroot/lib/chartjs"
     }
+
    
   ]
 }
