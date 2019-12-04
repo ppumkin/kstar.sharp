@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26020.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.sqlite", "kstar.sharp.sqlite\kstar.sharp.sqlite.csproj", "{BF2C4DA6-C306-44F3-AFEC-9CF9FFE78AEA}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.console", "kstar.sharp.console\kstar.sharp.console.csproj", "{6E8636E8-98DA-4610-B54E-E7F616CC0F2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.datacollect", "kstar.sharp.datacollect\kstar.sharp.datacollect.csproj", "{8F52E30A-BF17-4B12-A87B-86D59F32796C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.angular", "kstar.sharp.angular\kstar.sharp.angular.csproj", "{A628FCFA-D100-49A9-BEBF-EFC052766FF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{8F52E30A-BF17-4B12-A87B-86D59F32796C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F52E30A-BF17-4B12-A87B-86D59F32796C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F52E30A-BF17-4B12-A87B-86D59F32796C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A628FCFA-D100-49A9-BEBF-EFC052766FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A628FCFA-D100-49A9-BEBF-EFC052766FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A628FCFA-D100-49A9-BEBF-EFC052766FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A628FCFA-D100-49A9-BEBF-EFC052766FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

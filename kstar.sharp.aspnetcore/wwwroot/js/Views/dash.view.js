@@ -1,5 +1,7 @@
-import container from "../inversify.config";
-import { DashDriver } from '../Driver/dash.driver';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var inversify_config_1 = require("../inversify.config");
+var dash_driver_1 = require("../Driver/dash.driver");
 //@injectable()
 //class DashView {
 //    public LatestDataObservable: Subject<InverterDataGranular>;
@@ -13,7 +15,7 @@ import { DashDriver } from '../Driver/dash.driver';
 //        });
 //    }
 //}
-var driver = container.get(DashDriver);
+var driver = inversify_config_1.default.get(dash_driver_1.DashDriver);
 debugger;
 driver.Lala();
 //# sourceMappingURL=dash.view.js.map
