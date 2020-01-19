@@ -1,12 +1,12 @@
 ﻿
-google.charts.load("current", { packages: ["corechart", "bar"] });
+google.charts.load("current", { packages: ["corechart","bar"] });
 google.charts.setOnLoadCallback(setData);
 
-let dash_etoday_data;
-let dash_pvnow_data;
-let dash_gridnow_data;
+let dash_etoday_data; 
+let dash_pvnow_data; 
+let dash_gridnow_data; 
 
-let dash_pvtoday_data;
+let dash_pvtoday_data; 
 
 
 let inverterData;
@@ -17,11 +17,6 @@ $(document).on("onGetLatest", function (event, data) {
     setData();
 
 });
-
-
-const etodayMaxChartValue = 15;
-const pvPowerMaxChartValue = 3000;
-const gridPowerMaxChartValue = 1500;
 
 function setData() {
     //var textDataTime = new Date(data.recordedDateTime).toString();
@@ -36,49 +31,47 @@ function setData() {
     dash_etoday_data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
         ['Today', inverterData.eToday],
-        ['Average', etodayMaxChartValue - inverterData.eToday <= 0 ? 0 : etodayMaxChartValue - inverterData.eToday]
+        ['Average', 25 - inverterData.eToday]
 
     ]);
     $('#etoday').text(inverterData.eToday);
     drawChartEtoday();
 
-    let roundedPvPower = (inverterData.pvPower / 1000).toFixed(2);
+
     dash_pvnow_data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
         ['Today', inverterData.pvPower],
-        ['Average', pvPowerMaxChartValue - inverterData.pvPower <= 0 ? 0 : pvPowerMaxChartValue - inverterData.pvPower]
+        ['Average', 3000 - inverterData.pvPower]
 
     ]);
-    $('#pvnow').text(roundedPvPower);
+    $('#pvnow').text(inverterData.pvPower);
     drawChartPvNow();
 
-
-    let rounderGripPower = inverterData.gridPower.toFixed(0);
     dash_gridnow_data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Today', inverterData.gridPower < 0 ? inverterData.gridPower * -1 : inverterData.gridPower ],
-        ['Average', gridPowerMaxChartValue - inverterData.gridPower < 0 ? 0 : gridPowerMaxChartValue - inverterData.gridPower]
+        ['Today', inverterData.gridPower],
+        ['Average', 1500 - inverterData.gridPower]
 
     ]);
-    $('#gridnow').text(rounderGripPower);
+    $('#gridnow').text(inverterData.gridPower);
     drawGridNow();
 
 
     dash_pvtoday_data = google.visualization.arrayToDataTable([
         ['Hour', 'kWh'],
-        ['6:00', 0.1],
-        ['7:00', 0.3],
-        ['8:00', 0.45],
-        ['9:00', 0.5],
-        ['10:00', 0.55],
-        ['11:00', 0.6],
-        ['12:00', 0.65],
-        ['13:00', 0.55],
-        ['14:00', 0.45],
-        ['15:00', 0.32],
-        ['16:00', 0.2],
-        ['17:00', 0.18],
-        ['18:00', 0.2]
+        ['6:00',   0.1],
+        ['7:00',   0.3],
+        ['8:00',   0.45],
+        ['9:00',   0.5],
+        ['10:00',  0.55],
+        ['11:00',  0.6],
+        ['12:00',  0.65],
+        ['13:00',  0.55],
+        ['14:00',  0.45],
+        ['15:00',  0.32],
+        ['16:00',  0.2],
+        ['17:00',  0.18],
+        ['18:00',  0.2]
     ]);
     drawPvToday();
 
@@ -86,6 +79,12 @@ function setData() {
 
 
 function drawChartEtoday() {
+    //var data = google.visualization.arrayToDataTable([
+    //    ['Task', 'Hours per Day'],
+    //    ['PV', 1100],
+    //    ['Eat', 3500],
+
+    //]);
 
     var options = {
         //title: 'My Daily Activities',
@@ -105,6 +104,12 @@ function drawChartEtoday() {
 }
 
 function drawChartPvNow() {
+    //var data = google.visualization.arrayToDataTable([
+    //    ['Task', 'Hours per Day'],
+    //    ['PV', 1100],
+    //    ['Eat', 3500],
+
+    //]);
 
     var options = {
         //title: 'My Daily Activities',
@@ -124,6 +129,12 @@ function drawChartPvNow() {
 }
 
 function drawGridNow() {
+    //var data = google.visualization.arrayToDataTable([
+    //    ['Task', 'Hours per Day'],
+    //    ['PV', 1100],
+    //    ['Eat', 3500],
+
+    //]);
 
     var options = {
         //title: 'My Daily Activities',
@@ -193,6 +204,4 @@ function drawPvToday() {
 $(window).resize(function () {
     drawChartEtoday();
     drawChartPvnow();
-    drawGridNow();
-    drawPvToday();
 });

@@ -1,13 +1,5 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@page "/"
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="~/js/drivers/dash-gchart-etoday-driver.js"></script>
-
-<script src="~/js/inverter/inverter-latest-data.js"></script>
-
-<a href="~/">🏠</a>
 <style>
     html {
         background-color: #242f3a;
@@ -72,7 +64,7 @@
                 <span style="font-size: 3.8em" id="gridnow"></span> @*<span style="font-size: 1.4em">kW</span>*@
             </div>
             <div style="font-size: 1.4em">
-                W
+               @model.GridPower
             </div>
 
         </div>
@@ -93,17 +85,9 @@
 
 *@
 
+@code{
+    InverterDataGranular model = new InverterDataGranular() { GridPower = 100 } ;// await dbService.Get(start, end);
+
+}
 
 
-<script>
-
-    $(document).on("onGetLatest", function (event, data) {
-
-        ////debugger;
-        //var textDataTime = new Date(data.recordedDateTime).toString();
-        //var textData = `PV: ${data.pvPower}KW Battery: ${data.bat1Charge}% ${data.bat1Power}W Grid: ${data.gridPower}W Load: ${data.loadPower}W EToday: ${data.eToday}KWh`;
-        //$('#liveDataTime').text(textDataTime);
-        //$('#liveData').text(textData);
-
-    });
-</script>

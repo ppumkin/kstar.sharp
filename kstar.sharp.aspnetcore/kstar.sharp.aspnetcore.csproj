@@ -40,9 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Home\Dash - Copy.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Home\Dash.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
