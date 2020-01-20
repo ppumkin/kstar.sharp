@@ -9,21 +9,18 @@ let dash_gridnow_data;
 let dash_pvtoday_data;
 
 
-let inverterData;
-
 $(document).on("onGetLatest", function (event, data) {
-
-    inverterData = data;
-    setData();
-
+    setData(data);
 });
-
+$(document).on("onGetHourly", function (event, inverterDataList) {
+    setHourlyDate(inverterDataList);
+});
 
 const etodayMaxChartValue = 15;
 const pvPowerMaxChartValue = 3000;
 const gridPowerMaxChartValue = 1500;
 
-function setData() {
+function setData(inverterData) {
     //var textDataTime = new Date(data.recordedDateTime).toString();
     //var textData = `PV: ${data.pvPower}KW Battery: ${data.bat1Charge}% ${data.bat1Power}W Grid: ${data.gridPower}W Load: ${data.loadPower}W EToday: ${data.eToday}KWh`;
 
@@ -52,38 +49,44 @@ function setData() {
     $('#pvnow').text(roundedPvPower);
     drawChartPvNow();
 
-
     let rounderGripPower = inverterData.gridPower.toFixed(0);
     dash_gridnow_data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Today', inverterData.gridPower < 0 ? inverterData.gridPower * -1 : inverterData.gridPower ],
+        ['Today', inverterData.gridPower < 0 ? inverterData.gridPower * -1 : inverterData.gridPower],
         ['Average', gridPowerMaxChartValue - inverterData.gridPower < 0 ? 0 : gridPowerMaxChartValue - inverterData.gridPower]
 
     ]);
     $('#gridnow').text(rounderGripPower);
     drawGridNow();
+}
 
+
+function setHourlyDate(inverterDataList) {
+
+    if (inverterDataList === undefined)
+        return;
+
+    if (google.visualization.arrayToDataTable === undefined)
+        return;
 
     dash_pvtoday_data = google.visualization.arrayToDataTable([
         ['Hour', 'kWh'],
-        ['6:00', 0.1],
-        ['7:00', 0.3],
-        ['8:00', 0.45],
-        ['9:00', 0.5],
-        ['10:00', 0.55],
-        ['11:00', 0.6],
-        ['12:00', 0.65],
-        ['13:00', 0.55],
-        ['14:00', 0.45],
-        ['15:00', 0.32],
-        ['16:00', 0.2],
-        ['17:00', 0.18],
-        ['18:00', 0.2]
+        [new Date(inverterDataList[6].recordedDateTime ), parseFloat(( inverterDataList[6].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[7].recordedDateTime ), parseFloat(( inverterDataList[7].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[8].recordedDateTime ), parseFloat(( inverterDataList[8].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[9].recordedDateTime ), parseFloat(( inverterDataList[9].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[10].recordedDateTime), parseFloat((inverterDataList[10].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[11].recordedDateTime), parseFloat((inverterDataList[11].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[12].recordedDateTime), parseFloat((inverterDataList[12].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[13].recordedDateTime), parseFloat((inverterDataList[13].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[14].recordedDateTime), parseFloat((inverterDataList[14].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[15].recordedDateTime), parseFloat((inverterDataList[15].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[16].recordedDateTime), parseFloat((inverterDataList[16].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[17].recordedDateTime), parseFloat((inverterDataList[17].pvPower/ 1000).toFixed(2))],
+        [new Date(inverterDataList[18].recordedDateTime), parseFloat((inverterDataList[18].pvPower/ 1000).toFixed(2))]
     ]);
     drawPvToday();
-
 }
-
 
 function drawChartEtoday() {
 
@@ -158,14 +161,14 @@ function drawPvToday() {
         //fontName: 'LatoLight',
         hAxis: {
             title: '', //PV Today',
-            format: 'h:mm a',
+            format: 'HH', //'h:mm a',
             titleTextStyle: {
                 color: '#fff',
                 italic: false
             },
             gridlines: {
                 color: '#242f3a',
-                count: 2
+                count: 6
             }
             //viewWindow: {
             //    min: [7, 30, 0],
