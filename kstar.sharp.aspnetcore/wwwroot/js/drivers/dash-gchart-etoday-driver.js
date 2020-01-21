@@ -30,6 +30,11 @@ function setData(inverterData) {
     if (google.visualization.arrayToDataTable === undefined)
         return;
 
+    var options = { weekday: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+    var lastknown = new Date(inverterData.recordedDateTime);
+
+    $('#last-known-time').text(lastknown.toLocaleDateString("en-GB", options));
+
     dash_etoday_data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
         ['Today', inverterData.eToday],
@@ -161,7 +166,7 @@ function drawPvToday() {
         //fontName: 'LatoLight',
         hAxis: {
             title: '', //PV Today',
-            format: 'HH', //'h:mm a',
+            format: 'HH:mm', //'h:mm a',
             titleTextStyle: {
                 color: '#fff',
                 italic: false
@@ -170,6 +175,7 @@ function drawPvToday() {
                 color: '#242f3a',
                 count: 6
             }
+           
             //viewWindow: {
             //    min: [7, 30, 0],
             //    max: [17, 30, 0]
@@ -184,7 +190,9 @@ function drawPvToday() {
             gridlines: {
                 color: '#242f3a',
                 count: 2
-            }
+            },
+            maxValue: 4,
+            minValue: 0
         }
     };
 
