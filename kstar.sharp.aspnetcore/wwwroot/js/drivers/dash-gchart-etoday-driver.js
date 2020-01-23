@@ -35,11 +35,14 @@ function setData(inverterData) {
 
     $('#last-known-time').text(lastknown.toLocaleDateString("en-GB", options));
 
-    dash_etoday_data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Today', inverterData.eToday],
-        ['Average', etodayMaxChartValue - inverterData.eToday <= 0 ? 0 : etodayMaxChartValue - inverterData.eToday]
 
+    let total = 20 - inverterData.eToday; // - 8;
+
+    dash_etoday_data = google.visualization.arrayToDataTable([
+        ['Task', 'kWh'],
+        ['Produced', inverterData.eToday],
+        //['Consumed', 8],
+        ['Total', total]//etodayMaxChartValue - inverterData.eToday <= 0 ? 0 : etodayMaxChartValue - inverterData.eToday]
     ]);
     $('#etoday').text(inverterData.eToday);
     drawChartEtoday();
@@ -77,10 +80,10 @@ function setHourlyDate(data) {
 
     dash_pvtoday_data = google.visualization.arrayToDataTable([
         ['Hour', 'kWh'],
-        [new Date(data.hourlyStats[6].hour),  Math.round(data.hourlyStats[6].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[7].hour),  Math.round(data.hourlyStats[7].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[8].hour),  Math.round(data.hourlyStats[8].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[9].hour),  Math.round(data.hourlyStats[9].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[6].hour), Math.round(data.hourlyStats[6].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[7].hour), Math.round(data.hourlyStats[7].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[8].hour), Math.round(data.hourlyStats[8].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[9].hour), Math.round(data.hourlyStats[9].production.value * 1e2) / 1e2],
         [new Date(data.hourlyStats[10].hour), Math.round(data.hourlyStats[10].production.value * 1e2) / 1e2],
         [new Date(data.hourlyStats[11].hour), Math.round(data.hourlyStats[11].production.value * 1e2) / 1e2],
         [new Date(data.hourlyStats[12].hour), Math.round(data.hourlyStats[12].production.value * 1e2) / 1e2],
@@ -91,7 +94,8 @@ function setHourlyDate(data) {
         [new Date(data.hourlyStats[17].hour), Math.round(data.hourlyStats[17].production.value * 1e2) / 1e2],
         [new Date(data.hourlyStats[18].hour), Math.round(data.hourlyStats[18].production.value * 1e2) / 1e2]
     ]);
-    drawPvToday();
+
+    drawPvToday(data.totalConsumption.value.toFixed(2), data.totalProduction.value.toFixed(2));
 }
 
 function drawChartEtoday() {
@@ -105,7 +109,7 @@ function drawChartEtoday() {
         pieSliceText: 'none',
         backgroundColor: '#242f3a',
         pieStartAngle: 180,
-        slices: [{ color: '#f15a2c' }, { color: '#43576b' }]
+        slices: [{ color: '#f15a2c' }, { color: '#43576b' }, { color: 'transparent' }]
         //enableInteractivity: false
     };
 
@@ -151,7 +155,7 @@ function drawGridNow() {
     chart.draw(dash_gridnow_data, options);
 }
 
-function drawPvToday() {
+function drawPvToday(totalConsumed, totalProduced) {
     //var data = google.visualization.arrayToDataTable([
     //    ['Task', 'Hours per Day'],
     //    ['PV', 1100],
@@ -160,17 +164,23 @@ function drawPvToday() {
     //]);
 
     var options = {
-        title: '',
+        title: 'Consumed ' + totalConsumed + ' kWh',
+        titleTextStyle: {
+            color: '#fff',
+            italic: false,
+            bold: false
+        },
         backgroundColor: '#242f3a',
         colors: ['#f15a2c'],
         legend: { position: "none" },
         //fontName: 'LatoLight',
         hAxis: {
             title: '', //PV Today',
-            //format: 'HH:mm', //'h:mm a',
+            format: 'HH:mm', //'h:mm a',
             titleTextStyle: {
                 color: '#fff',
-                italic: false
+                italic: false,
+                bold: false
             },
             gridlines: {
                 color: '#242f3a',
@@ -183,10 +193,11 @@ function drawPvToday() {
             //}
         },
         vAxis: {
-            title: 'kWh',
+            title: totalProduced + ' kWh',
             titleTextStyle: {
                 color: '#fff',
-                italic: false
+                italic: false,
+                bold: false
             },
             gridlines: {
                 color: '#242f3a',
