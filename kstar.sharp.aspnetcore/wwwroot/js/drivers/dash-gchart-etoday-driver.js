@@ -66,29 +66,30 @@ function setData(inverterData) {
 }
 
 
-function setHourlyDate(inverterDataList) {
+function setHourlyDate(data) {
 
-    if (inverterDataList === undefined)
+    if (data === undefined)
         return;
 
     if (google.visualization.arrayToDataTable === undefined)
         return;
 
+
     dash_pvtoday_data = google.visualization.arrayToDataTable([
         ['Hour', 'kWh'],
-        [new Date(inverterDataList[6].recordedDateTime ), parseFloat(( inverterDataList[6].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[7].recordedDateTime ), parseFloat(( inverterDataList[7].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[8].recordedDateTime ), parseFloat(( inverterDataList[8].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[9].recordedDateTime ), parseFloat(( inverterDataList[9].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[10].recordedDateTime), parseFloat((inverterDataList[10].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[11].recordedDateTime), parseFloat((inverterDataList[11].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[12].recordedDateTime), parseFloat((inverterDataList[12].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[13].recordedDateTime), parseFloat((inverterDataList[13].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[14].recordedDateTime), parseFloat((inverterDataList[14].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[15].recordedDateTime), parseFloat((inverterDataList[15].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[16].recordedDateTime), parseFloat((inverterDataList[16].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[17].recordedDateTime), parseFloat((inverterDataList[17].pvPower/ 1000).toFixed(2))],
-        [new Date(inverterDataList[18].recordedDateTime), parseFloat((inverterDataList[18].pvPower/ 1000).toFixed(2))]
+        [new Date(data.hourlyStats[6].hour),  Math.round(data.hourlyStats[6].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[7].hour),  Math.round(data.hourlyStats[7].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[8].hour),  Math.round(data.hourlyStats[8].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[9].hour),  Math.round(data.hourlyStats[9].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[10].hour), Math.round(data.hourlyStats[10].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[11].hour), Math.round(data.hourlyStats[11].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[12].hour), Math.round(data.hourlyStats[12].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[13].hour), Math.round(data.hourlyStats[13].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[14].hour), Math.round(data.hourlyStats[14].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[15].hour), Math.round(data.hourlyStats[15].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[16].hour), Math.round(data.hourlyStats[16].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[17].hour), Math.round(data.hourlyStats[17].production.value * 1e2) / 1e2],
+        [new Date(data.hourlyStats[18].hour), Math.round(data.hourlyStats[18].production.value * 1e2) / 1e2]
     ]);
     drawPvToday();
 }
@@ -166,7 +167,7 @@ function drawPvToday() {
         //fontName: 'LatoLight',
         hAxis: {
             title: '', //PV Today',
-            format: 'HH:mm', //'h:mm a',
+            //format: 'HH:mm', //'h:mm a',
             titleTextStyle: {
                 color: '#fff',
                 italic: false
@@ -175,7 +176,7 @@ function drawPvToday() {
                 color: '#242f3a',
                 count: 6
             }
-           
+
             //viewWindow: {
             //    min: [7, 30, 0],
             //    max: [17, 30, 0]

@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.console", "ksta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.datacollect", "kstar.sharp.datacollect\kstar.sharp.datacollect.csproj", "{8F52E30A-BF17-4B12-A87B-86D59F32796C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kstar.sharp.blazor", "kstar.sharp.blazor\kstar.sharp.blazor.csproj", "{F93F1EF3-0385-4AFE-B1DE-0F98E4A8A249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kstar.sharp.blazor", "kstar.sharp.blazor\kstar.sharp.blazor.csproj", "{F93F1EF3-0385-4AFE-B1DE-0F98E4A8A249}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F9344696-6FD0-458D-9038-8EFB622685B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E74F3CE-B119-4703-AA2C-6F5120EAE541} = {F9344696-6FD0-458D-9038-8EFB622685B4}
+		{F93F1EF3-0385-4AFE-B1DE-0F98E4A8A249} = {F9344696-6FD0-458D-9038-8EFB622685B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82E4E249-4892-4AAD-833F-0BA1F9B96CB7}
