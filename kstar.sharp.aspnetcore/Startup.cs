@@ -32,6 +32,7 @@ namespace kstar.sharp.aspnetcore
             services.AddTransient<AnalyticsService>();
 
             services.AddSingleton<HourlyStatisticsService>();
+            //services.AddSingleton<InverterListCache>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +56,7 @@ namespace kstar.sharp.aspnetcore
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Dash}/{id?}");
             });
         }
     }

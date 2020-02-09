@@ -3,11 +3,12 @@
 }
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/js/swiped-events.min.js"></script>
 <script src="~/js/drivers/dash-gchart-etoday-driver.js"></script>
 
 <script src="~/js/inverter/inverter-latest-data.js"></script>
 
-<a href="~/">🏠</a><span id="last-known-time"></span>
+<span id="swipe-left" style="cursor:pointer;">◀&nbsp;</span>  <span id="last-known-time"></span> <span id="swipe-right" style="cursor:pointer;">&nbsp;▶</span>
 <style>
     html {
         background-color: #242f3a;
@@ -88,22 +89,26 @@
 </div>
 
 
-@*//background #242f3a
-    //dial light #43576b
-
-*@
-
-
-
 <script>
 
-    $(document).on("onGetLatest", function (event, data) {
+    $(document).ready(function () {
+        $('#swipe-left').on('click', function () { moveDayBack(); });
+        $('#swipe-right').on('click', function () { moveDayForward(); });
 
-        ////debugger;
-        //var textDataTime = new Date(data.recordedDateTime).toString();
-        //var textData = `PV: ${data.pvPower}KW Battery: ${data.bat1Charge}% ${data.bat1Power}W Grid: ${data.gridPower}W Load: ${data.loadPower}W EToday: ${data.eToday}KWh`;
-        //$('#liveDataTime').text(textDataTime);
-        //$('#liveData').text(textData);
-
+        document.addEventListener('swiped-left', function (e) { moveDayBack(); });
+        document.addEventListener('swiped-right', function (e) { moveDayForward(); });
     });
+
+
+    function moveDayBack() {
+        dayOffset--;
+        getHourly();
+    }
+    function moveDayForward() {
+        if (dayOffset < 0)
+            dayOffset++;
+
+        getHourly();
+    }
+
 </script>

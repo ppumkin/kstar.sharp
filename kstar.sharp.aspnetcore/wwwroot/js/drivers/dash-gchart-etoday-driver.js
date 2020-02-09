@@ -68,11 +68,12 @@ function setHourlyData(data) {
 
     let chartEtoday_data = google.visualization.arrayToDataTable([
         ['Task', 'kWh'],
-        ['Produced', data.totalProduction.value],
+        //['Produced', data.totalProduction.value],
+        ['Produced', data.latest.eToday],
         ['Purchased', data.totalPurchased.value],
         ['Total', remainderEToday]
     ]);
-    $('#etoday').text(data.totalProduction.value.toFixed(2));
+    $('#etoday').text(data.latest.eToday.toFixed(1));
     chartEtoday_update(chartEtoday_data);
     // E-Today
 
@@ -132,7 +133,7 @@ function chartPvNow_update(chartPvNow_data) {
         pieSliceText: 'none',
         backgroundColor: '#242f3a',
         pieStartAngle: 180,
-        slices: [{ color: '#f15a2c' }, { color: '#43576b' }]
+        slices: [{ color: greenHex }, { color: silverHex }]
         //enableInteractivity: false
     };
     chartPvNow.draw(chartPvNow_data, options);
