@@ -30,6 +30,8 @@ namespace kstar.sharp.aspnetcore
 
             services.AddTransient<DbService>();
             services.AddTransient<AnalyticsService>();
+
+            services.AddSingleton<HourlyStatisticsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

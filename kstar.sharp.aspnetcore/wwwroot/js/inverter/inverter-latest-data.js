@@ -1,12 +1,21 @@
 ﻿
 
+google.charts.load("current", { packages: ["corechart", "bar"] });
+google.charts.setOnLoadCallback(startCharts);
 
-$(document).ready(function () {
-    setInterval(function () { getLatest(); }, 25 * 1000); //need to synch this time setting to something common
-    getLatest();
+function startCharts() {
+    $(document).trigger("initialiseGoogleCharts");
+
+    //setInterval(function () { getLatest(); }, 25 * 1000); //need to synch this time setting to something common
+    //getLatest();
 
     setInterval(function () { getHourly(); }, 60 * 1000 * 60); //need to synch this time setting to something common
     getHourly();
+}
+
+
+$(document).ready(function () {
+
 });
 
 function getLatest() {
