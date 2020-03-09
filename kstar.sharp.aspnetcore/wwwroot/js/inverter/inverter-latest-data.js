@@ -1,17 +1,13 @@
-﻿
-
-
-google.charts.load("current", { packages: ["corechart", "bar"] });
+﻿google.charts.load("current", { packages: ["corechart", "bar"] });
 google.charts.setOnLoadCallback(startCharts);
 
 function startCharts() {
     $(document).trigger("initialiseGoogleCharts");
 
-    //setInterval(function () { getLatest(); }, 25 * 1000); //need to synch this time setting to something common
-    //getLatest();
-
     setInterval(function () { getHourly(); }, 30 * 1000); //60 * 1000 * 60); //need to synch this time setting to something common
-    getHourly();
+
+    if (dayOffset === 0)
+        getHourly();
 }
 
 var dayOffset = 0;
@@ -26,12 +22,10 @@ function getHourly() {
     });
 }
 
-
-
-
 $(document).ready(function () {
 
 });
+
 function getLatest() {
     $.ajax({
         url: "/api/live",

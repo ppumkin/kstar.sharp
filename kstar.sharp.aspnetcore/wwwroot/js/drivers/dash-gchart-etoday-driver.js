@@ -63,12 +63,15 @@ function setHourlyData(data) {
     //Grid Now
 
     // E-Today
+
+    //data.totalConsumption.value = 6;
+    //data.totalPurchased.value = 0;
+
     const maxEToday = 20;
     let remainderEToday = maxEToday - data.totalConsumption.value;
 
     let chartEtoday_data = google.visualization.arrayToDataTable([
         ['Task', 'kWh'],
-        //['Produced', data.totalProduction.value],
         ['Produced', data.latest.eToday],
         ['Purchased', data.totalPurchased.value],
         ['Total', remainderEToday]
@@ -79,27 +82,21 @@ function setHourlyData(data) {
 
 
     //bar chart
-    let dash_pvtoday_data = google.visualization.arrayToDataTable([
-        ['Hour', 'kWh'],
-        [new Date(data.hourlyStats[6].hour), Math.round(data.hourlyStats[6].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[7].hour), Math.round(data.hourlyStats[7].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[8].hour), Math.round(data.hourlyStats[8].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[9].hour), Math.round(data.hourlyStats[9].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[10].hour), Math.round(data.hourlyStats[10].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[11].hour), Math.round(data.hourlyStats[11].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[12].hour), Math.round(data.hourlyStats[12].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[13].hour), Math.round(data.hourlyStats[13].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[14].hour), Math.round(data.hourlyStats[14].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[15].hour), Math.round(data.hourlyStats[15].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[16].hour), Math.round(data.hourlyStats[16].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[17].hour), Math.round(data.hourlyStats[17].production.value * 1e2) / 1e2],
-        [new Date(data.hourlyStats[18].hour), Math.round(data.hourlyStats[18].production.value * 1e2) / 1e2]
-    ]);
-
+    const chartEntries = [];
+    chartEntries.push(['Hour', 'Consumed', 'Produced']);
+    for (var hour = 6; hour <= 21; hour++) {
+        chartEntries.push(charPvTodayBuild(data.hourlyStats[hour]));
+    }
+    let dash_pvtoday_data = google.visualization.arrayToDataTable(chartEntries);
     chartPvToday_update(data.totalConsumption.value.toFixed(2), data.totalProduction.value.toFixed(2), dash_pvtoday_data);
+
+    function charPvTodayBuild(hourlyStat) {
+        return [new Date(hourlyStat.hour), Math.round(hourlyStat.consumption.value * 1e2) / 1e2, Math.round(hourlyStat.production.value * 1e2) / 1e2];
+    }
     //bar chart
 
 }
+
 
 
 const silverHex = '#43576B';
@@ -149,7 +146,7 @@ function chartGridNow_update(chartGridNow_data) {
         pieSliceText: 'none',
         backgroundColor: '#242f3a',
         pieStartAngle: 180,
-        slices: [{ color: '#f15a2c' }, { color: '#43576b' }]
+        slices: [{ color: amberHex }, { color: silverHex }]
         //enableInteractivity: false
     };
     chartGridNow.draw(chartGridNow_data, options);
@@ -164,8 +161,9 @@ function chartPvToday_update(totalConsumed, totalProduced, chartPvToday_data) {
             bold: false
         },
         backgroundColor: '#242f3a',
-        colors: ['#f15a2c'],
+        colors: [amberHex, greenHex],
         legend: { position: "none" },
+        isStacked: true,
         //fontName: 'LatoLight',
         hAxis: {
             title: '', //PV Today',

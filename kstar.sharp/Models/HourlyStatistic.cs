@@ -10,5 +10,7 @@ namespace kstar.sharp.Models
         public DateTime Hour { get; set; }
         public KiloWattHour Production { get; set; }
         public KiloWattHour Consumption { get; set; }
+        public KiloWattHour TotalPurchased => decimal.Subtract(Consumption, Production);
+
     }
 }
