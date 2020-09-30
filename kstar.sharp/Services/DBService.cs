@@ -28,9 +28,20 @@ namespace kstar.sharp.Services
 
         public async Task<domain.Entities.InverterDataGranular> GetLatest()
         {
-            var result = await db.InverterDataGranular.LastAsync();
+            //This is very slow for some reason
+            //var result = await db.InverterDataGranular.LastAsync();
 
-            return result;
+            var start = DateTime.Now.AddMinutes(-5);
+            var end = DateTime.Now;
+
+            var results = await Get(start, end);
+
+            var result = results.OrderByDescending(x => x.RecordedDateTime).FirstOrDefault();
+
+            if (result is null)
+                return new domain.Entities.InverterDataGranular();
+            else
+                return result;
         }
 
         /// <summary>
