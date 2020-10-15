@@ -1,4 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Client.Options;
+using Newtonsoft.Json;
 
 namespace kstar.sharp.console
 {
@@ -7,13 +15,17 @@ namespace kstar.sharp.console
 
     internal class Program
     {
-        private static int REFRESH_SECONDS = 30; //30 seconds is 2880 rows per day, and ~1mln rows per year. SQLite should handle a few billion no problem
+        private static int REFRESH_SECONDS = 10; //30; //30 seconds is 2880 rows per day, and ~1mln rows per year. SQLite should handle a few billion no problem
         private static string IP_ADDRESS_INVERTER = "0.0.0.0";
         private static kstar.sharp.datacollect.Client client;
 
         private static string SQL_LITE_CONNECTION_STRING = "";
+        private static string MQTT_CONNECTION_STRING = "";
 
-        private static void Main(string[] args)
+
+        private static IMqttClient mqttClient;
+
+        private static async Task Main(string[] args)
         {
             Console.WriteLine("------------------------");
 
@@ -55,37 +67,124 @@ namespace kstar.sharp.console
             Console.WriteLine("");
 
 
+            Console.WriteLine("Configuring MQTT");
+            Console.WriteLine("-------------------------------\n");
+            await ConfigureMqtt();
+            Console.WriteLine("");
+
             // Display some information
             Console.WriteLine("Starting UDP Data");// on port: " + receiverPort);
             Console.WriteLine("-------------------------------\n");
             client.DataRecieved += new kstar.sharp.datacollect.DataRecievedEventHandler(DataRecievedUpdateConsole);
             //while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) //does not work in docker!
+
+            nextDbSaveTime = DateTime.Now.AddSeconds(30);
+
             while (true)  // ctrl+c or sigterm kills this
             {
                 client.SendDataRequest();
 
-                System.Threading.Thread.Sleep(REFRESH_SECONDS * 1000);
+                await Task.Delay(REFRESH_SECONDS * 1000);
+                
                 Console.WriteLine("Send");
             }
         }
 
 
-        private static void DataRecievedUpdateConsole(kstar.sharp.domain.Models.InverterData inverterDataModel)
+        private static async Task ConfigureMqtt()
         {
-            using (var dbContext = new sharp.ef.InverterDataContext(SQL_LITE_CONNECTION_STRING))
+            var factory = new MqttFactory();
+            
+            mqttClient = factory.CreateMqttClient();
+
+            var options = new MqttClientOptionsBuilder()
+                .WithTcpServer(MQTT_CONNECTION_STRING, 1883) // Port is optional
+                .WithClientId("kstar.sharp.console")
+                .WithCredentials("mqtt", "mqtt")
+                .Build();
+
+            await mqttClient.ConnectAsync(options, CancellationToken.None);
+
+            //mqttClient.UseDisconnectedHandler(async e =>
+            //{
+            //    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+            //    await Task.Delay(TimeSpan.FromSeconds(5));
+
+            //    try
+            //    {
+            //        await mqttClient.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("### RECONNECTING FAILED ###");
+            //    }
+            //});
+
+        }
+
+        private static async Task PublishSensorTopic(domain.Models.InverterData inverterDataModel)
+        {
+            Console.WriteLine("Publishing MQTT Topics");
+
+            try
             {
-                kstar.sharp.Services.DbService db = new sharp.Services.DbService(dbContext);
+                var messages = new List<MqttApplicationMessage>();
+                messages.Add(CreateMqttMessage("sensor/inverter/pvpower", inverterDataModel.PVData.PVPower.ToString()));
+                messages.Add(CreateMqttMessage("sensor/inverter/grid", inverterDataModel.GridData.GridPower.ToString()));
+                messages.Add(CreateMqttMessage("sensor/inverter/load", inverterDataModel.LoadData.LoadPower.ToString()));
+                messages.Add(CreateMqttMessage("sensor/inverter/temp", inverterDataModel.StatData.InverterTemperature.ToString()));
+                messages.Add(CreateMqttMessage("sensor/inverter/etoday", inverterDataModel.StatData.EnergyToday.ToString()));
 
-                db.Save(inverterDataModel);
 
-                Console.Clear();
-                Console.WriteLine(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " (localtime)");
-                Console.WriteLine(inverterDataModel.PVData);
-                Console.WriteLine(inverterDataModel.GridData);
-                Console.WriteLine(inverterDataModel.LoadData);
-                Console.WriteLine(inverterDataModel.BatteryData);
-                Console.WriteLine(inverterDataModel.StatData);
+                await mqttClient.PublishAsync(messages);
             }
+            catch (Exception x)
+            {
+
+                Console.WriteLine($"Publishing MQTT Topics - FAILED - ${x.Message}");
+            }
+         
+        }
+
+        private static MqttApplicationMessage CreateMqttMessage(string topic, string value)
+        {
+            return  new MqttApplicationMessageBuilder()
+            .WithTopic(topic)
+            .WithPayload(value)
+            .WithAtMostOnceQoS()
+            .Build();
+        }
+
+        private static DateTime nextDbSaveTime;
+
+        private static void DataRecievedUpdateConsole(domain.Models.InverterData inverterDataModel)
+        {
+            Console.Clear();
+
+            Console.WriteLine(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " (localtime)");
+            Console.WriteLine(inverterDataModel.PVData);
+            Console.WriteLine(inverterDataModel.GridData);
+            Console.WriteLine(inverterDataModel.LoadData);
+            Console.WriteLine(inverterDataModel.BatteryData);
+            Console.WriteLine(inverterDataModel.StatData);
+            Console.WriteLine(string.Empty);
+
+            PublishSensorTopic(inverterDataModel).GetAwaiter().GetResult();
+
+            if (DateTime.Now >= nextDbSaveTime)
+            {
+                Console.WriteLine("Saving DB Entry");
+                nextDbSaveTime = DateTime.Now.AddSeconds(30);
+
+                using (var dbContext = new ef.InverterDataContext(SQL_LITE_CONNECTION_STRING))
+                {
+                    Services.DbService db = new Services.DbService(dbContext);
+
+                    db.Save(inverterDataModel);
+                }
+
+            }
+
         }
 
         private static void parseArguments(string[] args)
@@ -103,6 +202,12 @@ namespace kstar.sharp.console
                 {
                     SQL_LITE_CONNECTION_STRING = args[i].Replace("--sqlite-", "");
                     Console.WriteLine("Set SQLite connection string from parameter: " + SQL_LITE_CONNECTION_STRING);
+                }
+
+                if (args[i].StartsWith("--mqtt-"))
+                {
+                    MQTT_CONNECTION_STRING = args[i].Replace("--mqtt-", "");
+                    Console.WriteLine("Set MQTT connection string from parameter: " + MQTT_CONNECTION_STRING);
                 }
             }
         }

@@ -2,7 +2,7 @@
   "profiles": {
     "kstar.console": {
       "commandName": "Project",
-      "commandLineArgs": "--ip-192.168.1.50 --sqlite-\"Data Source=C:\\Projects\\kstar.sharp\\sqlite\\inverter-data.db\""
+      "commandLineArgs": "--ip-192.168.1.38 --mqtt-homeassistant --sqlite-\"Data Source=C:\\Projects\\kstar.sharp\\sqlite\\inverter-data.db\""
     }
   }
 }
