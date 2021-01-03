@@ -1,8 +1,8 @@
-﻿using kstar.sharp.domain.Extensions;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using kstar.sharp.domain.Extensions;
 
 namespace kstar.sharp.datacollect
 {

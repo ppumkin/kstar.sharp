@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
-using Newtonsoft.Json;
 
 namespace kstar.sharp.console
 {
@@ -69,7 +67,7 @@ namespace kstar.sharp.console
 
             Console.WriteLine("Configuring MQTT");
             Console.WriteLine("-------------------------------\n");
-            await ConfigureMqtt();
+            await ConfigureAndConnectMqtt();
             Console.WriteLine("");
 
             // Display some information
@@ -82,19 +80,28 @@ namespace kstar.sharp.console
 
             while (true)  // ctrl+c or sigterm kills this
             {
-                client.SendDataRequest();
+                try
+                {
+                    client.SendDataRequest();
+
+                }
+                catch (Exception x)
+                {
+                    Console.WriteLine("SendDataRequest FAILED - " + x.Message);
+
+                }
 
                 await Task.Delay(REFRESH_SECONDS * 1000);
-                
+
                 Console.WriteLine("Send");
             }
         }
 
 
-        private static async Task ConfigureMqtt()
+        private static async Task ConfigureAndConnectMqtt()
         {
             var factory = new MqttFactory();
-            
+
             mqttClient = factory.CreateMqttClient();
 
             var options = new MqttClientOptionsBuilder()
@@ -103,7 +110,15 @@ namespace kstar.sharp.console
                 .WithCredentials("mqtt", "mqtt")
                 .Build();
 
-            await mqttClient.ConnectAsync(options, CancellationToken.None);
+            try
+            {
+                await mqttClient.ConnectAsync(options, CancellationToken.None);
+
+            }
+            catch (Exception x)
+            {
+                Console.WriteLine("Could not connect to MQTT - " + x.Message);
+            }
 
             //mqttClient.UseDisconnectedHandler(async e =>
             //{
@@ -126,6 +141,12 @@ namespace kstar.sharp.console
         {
             Console.WriteLine("Publishing MQTT Topics");
 
+            if (!mqttClient.IsConnected)
+                await ConfigureAndConnectMqtt();
+
+            if (!mqttClient.IsConnected)
+                return;
+
             try
             {
                 var messages = new List<MqttApplicationMessage>();
@@ -143,12 +164,12 @@ namespace kstar.sharp.console
 
                 Console.WriteLine($"Publishing MQTT Topics - FAILED - ${x.Message}");
             }
-         
+
         }
 
         private static MqttApplicationMessage CreateMqttMessage(string topic, string value)
         {
-            return  new MqttApplicationMessageBuilder()
+            return new MqttApplicationMessageBuilder()
             .WithTopic(topic)
             .WithPayload(value)
             .WithAtMostOnceQoS()
